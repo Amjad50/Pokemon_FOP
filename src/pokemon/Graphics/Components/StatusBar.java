@@ -51,4 +51,15 @@ public class StatusBar extends HBox {
 	public void setName(String value) {
 		name.textProperty().set(value);
 	}
+
+	@Override
+	public String toString() {
+
+		return "StatusBar " +
+				"{" +
+				"Name: \"" + getName() + "\", " +
+				"Health: " + getHealth() + ", " +
+				"Accumulator: " + getAccumulator() +
+				"}";
+	}
 }
