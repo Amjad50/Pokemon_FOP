@@ -6,6 +6,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import pokemon.Graphics.Controllers.Main;
 
@@ -32,8 +34,9 @@ public class PokemonApplication extends Application {
 
 
 	public void run() {
-		PlatformImpl.startup(() -> {});
-		runThread(()-> {
+		PlatformImpl.startup(() -> {
+		});
+		runThread(() -> {
 			try {
 				start(new Stage());
 			} catch (IOException e) {
@@ -42,7 +45,17 @@ public class PokemonApplication extends Application {
 		});
 	}
 
-	private void runThread(Runnable r){
+	private void runThread(Runnable r) {
 		Platform.runLater(r);
+	}
+
+	public void addImage(String url, double x, double y) {
+		Image img = new Image(url);
+		ImageView view = new ImageView(img);
+
+		view.setLayoutX(x);
+		view.setLayoutY(y);
+
+		runThread(() -> this.controller.addChild(view));
 	}
 }

@@ -7,5 +7,6 @@ public class testMain {
 		PokemonApplication app = new PokemonApplication();
 
 		app.run();
+		app.addImage("http://www.pokestadium.com/sprites/xy/charmander.gif", 500, 500);
 	}
 }
