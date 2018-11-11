@@ -16,12 +16,12 @@
     </HBox.margin>
   </Label>
   <VBox alignment="CENTER_RIGHT">
-    <ProgressBar fx:id="health" prefWidth="200.0" progress="0.0" style="-fx-accent: red;"/>
+    <ProgressBar fx:id="health" prefWidth="200.0" progress="1" style="-fx-accent: red;"/>
     <Region minHeight="-Infinity" prefHeight="5.0" VBox.vgrow="SOMETIMES">
       <VBox.margin>
         <Insets/>
       </VBox.margin>
     </Region>
-    <ProgressBar fx:id="accumulator" prefWidth="200.0" progress="0.0"/>
+    <ProgressBar fx:id="accumulator" prefWidth="200.0" progress="0"/>
   </VBox>
 </fx:root>

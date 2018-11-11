@@ -1,4 +1,4 @@
-package pokemon.Graphics.Controllers;
+package FinalMonster.Graphics.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;

@@ -1,5 +1,6 @@
-package pokemon.Graphics;
+package FinalMonster.Graphics;
 
+import FinalMonster.Utils.ImageEditor;
 import com.sun.javafx.application.PlatformImpl;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -9,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import pokemon.Graphics.Controllers.Main;
+import FinalMonster.Graphics.Controllers.Main;
 
 import java.io.IOException;
 
@@ -19,7 +20,7 @@ public class PokemonApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/pokemon/Graphics/fxml/main.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/FinalMonster/Graphics/fxml/main.fxml"));
 
 		Parent root = loader.load();
 
@@ -49,13 +50,19 @@ public class PokemonApplication extends Application {
 		Platform.runLater(r);
 	}
 
-	public void addImage(String url, double x, double y) {
-		Image img = new Image(url);
+	public void addImage(Image img, double x, double y, ImageEditor editor) {
 		ImageView view = new ImageView(img);
 
 		view.setLayoutX(x);
 		view.setLayoutY(y);
 
+		editor.edit(view);
+
 		runThread(() -> this.controller.addChild(view));
+	}
+
+	public void addImage(String url, double x, double y, ImageEditor editor) {
+		Image img = new Image(url);
+		addImage(img, x, y, editor);
 	}
 }

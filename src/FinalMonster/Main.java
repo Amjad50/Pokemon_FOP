@@ -1,4 +1,4 @@
-package pokemon;
+package FinalMonster;
 
 public class Main {
 

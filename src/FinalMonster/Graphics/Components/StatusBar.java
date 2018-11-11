@@ -1,4 +1,4 @@
-package pokemon.Graphics.Components;
+package FinalMonster.Graphics.Components;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +26,12 @@ public class StatusBar extends HBox {
 		loader.setController(this);
 
 		loader.load();
+	}
+
+	public StatusBar(String name) throws IOException {
+		this();
+
+		setName(name);
 	}
 
 	public void setHealth(double value) {
