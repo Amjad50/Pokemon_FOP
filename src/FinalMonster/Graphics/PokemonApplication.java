@@ -51,6 +51,8 @@ public class PokemonApplication extends Application {
 	}
 
 	public void addImage(Image img, double x, double y, ImageEditor editor) {
+		assert controller != null;
+
 		ImageView view = new ImageView(img);
 
 		view.setLayoutX(x);
