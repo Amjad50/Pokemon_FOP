@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import FinalMonster.Graphics.Components.*?>
+<?import javafx.scene.layout.VBox?>
+<?import java.util.ArrayList?>
+<fx:root xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" type="VBox">
+  <StatusBar fx:id="status1" name="poke1"/>
+  <StatusBar fx:id="status2" name="poke2"/>
+  <StatusBar fx:id="status3" name="poke3"/>
+
+  <fx:define>
+    <ArrayList fx:id="status_bars">
+      <fx:reference source="status1"/>
+      <fx:reference source="status2"/>
+      <fx:reference source="status3"/>
+    </ArrayList>
+  </fx:define>
+</fx:root>

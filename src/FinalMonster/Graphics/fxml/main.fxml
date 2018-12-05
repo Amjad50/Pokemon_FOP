@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import FinalMonster.Graphics.Components.*?>
-<Pane fx:id="root" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+<Pane fx:id="root" xmlns="http://javafx.com/javafx/8.0.172-ea"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="FinalMonster.Graphics.Controllers.Main">
 
-  <!--todo: remove test labels and values and add them through java-->
-
-  <VBox fx:id="status_player" prefHeight="180" prefWidth="250.0" spacing="10">
-    <StatusBar name="poke1" health=".5" accumulator=".9"/>
-    <StatusBar name="any" health=".3" accumulator=".1"/>
-    <StatusBar name="thing" health=".5" accumulator=".212"/>
-  </VBox>
-
-  <VBox fx:id="status_opponent" prefHeight="180.0" prefWidth="250.0" spacing="10">
-    <StatusBar name="" health=".1" accumulator=".6"/>
-    <StatusBar name="hi" />
-    <StatusBar name="loooooooooooooooooooooooooooooong" accumulator=".5"/>
-  </VBox>
+  <StatusGroup fx:id="status_player" />
+  <StatusGroup fx:id="status_opponent" />
 </Pane>
