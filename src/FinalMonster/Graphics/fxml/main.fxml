@@ -2,9 +2,13 @@
 
 <?import javafx.scene.layout.Pane?>
 <?import FinalMonster.Graphics.Components.*?>
-<Pane fx:id="root" xmlns="http://javafx.com/javafx/8.0.172-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="FinalMonster.Graphics.Controllers.Main">
+<?import javafx.scene.layout.StackPane?>
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.172-ea"
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="FinalMonster.Graphics.Controllers.Main">
+  <Pane fx:id="normal_pane"/>
+  <Pane fx:id="status_pane">
+    <StatusBar fx:id="status_player"/>
+    <StatusBar fx:id="status_opponent" />
+  </Pane>
 
-  <StatusGroup fx:id="status_player" />
-  <StatusGroup fx:id="status_opponent" />
-</Pane>
+</StackPane>

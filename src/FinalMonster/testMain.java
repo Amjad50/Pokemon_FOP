@@ -7,12 +7,12 @@ public class testMain {
 		PokemonApplication app = new PokemonApplication();
 
 		app.run();
-		app.addImage("http://www.pokestadium.com/sprites/xy/totodile-3.gif", 500, 500, view -> {
-			view.setPreserveRatio(true);
-			view.setSmooth(false);
-			view.setFitHeight(300);
-		});
-
-		app.addImage("http://www.pokestadium.com/sprites/xy/charmander.gif", 900, 500, view -> {});
+//		app.addImage("http://www.pokestadium.com/sprites/xy/totodile-3.gif", 500, 500, view -> {
+//			view.setPreserveRatio(true);
+//			view.setSmooth(false);
+//			view.setFitHeight(300);
+//		});
+//
+		app.addImage("http://www.pokestadium.com/sprites/xy/charmander.gif", 500, 400, view -> {});
 	}
 }
