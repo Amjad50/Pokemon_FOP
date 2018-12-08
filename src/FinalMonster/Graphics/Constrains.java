@@ -1,6 +1,6 @@
 package FinalMonster.Graphics;
 
 public class Constrains {
-	public static double ROOT_HEIGHT = 800,
-			ROOT_WIDTH = 1200;
+	public static double ROOT_HEIGHT = 500,
+			ROOT_WIDTH = 650;
 }
