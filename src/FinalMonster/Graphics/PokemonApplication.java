@@ -1,5 +1,6 @@
 package FinalMonster.Graphics;
 
+import FinalMonster.Graphics.Controllers.Main;
 import FinalMonster.Utils.ImageEditor;
 import com.sun.javafx.application.PlatformImpl;
 import javafx.application.Application;
@@ -10,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import FinalMonster.Graphics.Controllers.Main;
 
 import java.io.IOException;
 

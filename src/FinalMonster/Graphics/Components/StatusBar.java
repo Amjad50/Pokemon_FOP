@@ -1,13 +1,9 @@
 package FinalMonster.Graphics.Components;
 
-import FinalMonster.Graphics.PokemonApplication;
 import FinalMonster.Utils.Callback;
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -16,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.concurrent.Callable;
 
 public class StatusBar extends HBox {
 
@@ -30,7 +25,7 @@ public class StatusBar extends HBox {
 			MLIMIT_YELLOW = 0.25;
 
 	private int full_hp;
-	private IntegerProperty current_hp;
+	private int current_hp;
 	private String color;
 
 	@FXML
@@ -55,39 +50,27 @@ public class StatusBar extends HBox {
 		loader.setController(this);
 
 		loader.load();
-		current_hp = new SimpleIntegerProperty();
-
-		current_hp.addListener((observable, oldv, newv)->{
-			if( !oldv.equals(newv) ){
-				double percentage = 1;
-				if (full_hp != 0){
-					percentage =  newv.intValue() / (double) full_hp;
-
-					if(percentage > MLIMIT_GREEN){
-						this.setColor(GREEN);
-					}else if(percentage > MLIMIT_YELLOW){
-						this.setColor(YELLOW);
-					}else{
-						this.setColor(RED);
-					}
-				}
-				this.health_text.setText(String.format("%d/%d", newv.intValue(), full_hp));
-
-				health.progressProperty().set(percentage);
-			}
-		});
 
 		this.setName(name);
 		this.setFull_hp(full_hp);
 		setHealth(full_hp);
 	}
 
-	public void setHealth(int value, Callback callable){
+	public void setHealth(int value, Callback callable) {
 		Timeline n = new Timeline();
 
 		n.getKeyFrames().add(
-				new KeyFrame(Duration.seconds(2), new KeyValue(current_hp, value))
+				new KeyFrame(Duration.millis(34), event -> {
+					if ( this.current_hp != value ) {
+						int tmp = this.current_hp - value;
+						tmp = ( tmp > 0 ) ? 1 : -1;
+						this.setHealth(this.current_hp - tmp);
+					} else {
+						n.stop();
+					}
+				})
 		);
+		n.setCycleCount(Animation.INDEFINITE);
 
 		n.play();
 		n.setOnFinished(event -> {
@@ -100,19 +83,27 @@ public class StatusBar extends HBox {
 	}
 
 	public void setHealth(int value) {
-		this.current_hp.set(value);
+		this.current_hp = value;
+
+		double percentage = 1;
+		if ( full_hp != 0 ) {
+			percentage = value / (double) full_hp;
+
+			if ( percentage > MLIMIT_GREEN ) {
+				this.setColor(GREEN);
+			} else if ( percentage > MLIMIT_YELLOW ) {
+				this.setColor(YELLOW);
+			} else {
+				this.setColor(RED);
+			}
+		}
+		this.health_text.setText(String.format("%d/%d", value, full_hp));
+
+		health.progressProperty().set(percentage);
 	}
 
 	public int getHealth() {
-		return this.current_hp.get();
-	}
-
-	public IntegerProperty getHealthProperty() {
-		return current_hp;
-	}
-
-	public IntegerProperty current_hpProperty() {
-		return current_hp;
+		return this.current_hp;
 	}
 
 	public double getAccumulator() {
@@ -156,7 +147,7 @@ public class StatusBar extends HBox {
 	}
 
 	public void setColor(String color) {
-		if (this.color != null && this.color.equals(color))
+		if ( this.color != null && this.color.equals(color) )
 			return;
 		this.color = color;
 		this.health.setStyle("-fx-accent: " + color + ";");

@@ -8,7 +8,7 @@
   <Pane fx:id="normal_pane"/>
   <Pane fx:id="status_pane">
     <StatusBar fx:id="status_player"/>
-    <StatusBar fx:id="status_opponent" />
+    <StatusBar fx:id="status_opponent"/>
   </Pane>
 
 </StackPane>

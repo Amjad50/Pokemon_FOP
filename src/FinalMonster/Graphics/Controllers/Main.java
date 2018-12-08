@@ -2,14 +2,9 @@ package FinalMonster.Graphics.Controllers;
 
 import FinalMonster.Graphics.Components.StatusBar;
 import FinalMonster.Graphics.Constrains;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 public class Main {
 
@@ -20,10 +15,6 @@ public class Main {
 	private Pane status_pane;
 	@FXML
 	private Pane normal_pane;
-
-	{
-		double root_h = Constrains.ROOT_HEIGHT, root_w = Constrains.ROOT_WIDTH;
-	}
 
 
 	@FXML
@@ -47,10 +38,7 @@ public class Main {
 		status_player.setLayoutX(status_playerX);
 		status_player.setLayoutY(status_playerY);
 
-		status_player.setHealth((status_player.getHealth()  - 80), ()->{
-			System.out.println("done");
-		});
-
+		status_player.setHealth(( status_player.getHealth() - 80 ), () -> System.out.println("done"));
 
 
 	}
