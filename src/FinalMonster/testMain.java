@@ -13,6 +13,6 @@ public class testMain {
 //			view.setFitHeight(300);
 //		});
 //
-		app.addImage("http://www.pokestadium.com/sprites/xy/charmander.gif", 500, 400, view -> {});
+//		app.addImage("http://www.pokestadium.com/sprites/xy/charmander.gif", 500, 400, view -> {});
 	}
 }
