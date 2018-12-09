@@ -67,19 +67,13 @@ public class StatusBar extends HBox {
 						this.setHealth(this.current_hp - tmp);
 					} else {
 						n.stop();
+						callable.call();
 					}
 				})
 		);
 		n.setCycleCount(Animation.INDEFINITE);
 
 		n.play();
-		n.setOnFinished(event -> {
-			try {
-				callable.call();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
 	}
 
 	public void setHealth(int value) {
@@ -108,6 +102,35 @@ public class StatusBar extends HBox {
 
 	public double getAccumulator() {
 		return accumulator.progressProperty().get();
+	}
+
+	public void setAccumulator(int value_, Callback callable) {
+		Timeline n = new Timeline();
+
+
+		double value = value_ / 100.0;
+		assert value >= getAccumulator();
+
+		n.getKeyFrames().add(
+				new KeyFrame(Duration.millis(34), event -> {
+					double current_a = getAccumulator();
+					if ( current_a < value ) {
+						double tmp = current_a - value;
+						tmp = ( tmp > 0 ) ? 0.01 : -0.01;
+						this.setAccumulator(current_a - tmp);
+					} else {
+						n.stop();
+						callable.call();
+					}
+				})
+		);
+		n.setCycleCount(Animation.INDEFINITE);
+		n.play();
+	}
+
+	public void setAccumulator(int value) {
+		double percentage = value / 100.0;
+		accumulator.progressProperty().set(percentage);
 	}
 
 	public void setAccumulator(double value) {
