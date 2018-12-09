@@ -2,9 +2,11 @@ package FinalMonster.Graphics.Controllers;
 
 import FinalMonster.Graphics.Components.StatusBar;
 import FinalMonster.Graphics.Constrains;
+import FinalMonster.Graphics.Storage.ImageDB;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 public class Main {
 
@@ -40,6 +42,13 @@ public class Main {
 
 		status_player.setHealth(( status_player.getHealth() - 80 ), () -> System.out.println("done"));
 
+		root.setBackground(new Background(new BackgroundImage(
+				new Image(ImageDB.BG[0]),
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT,
+				BackgroundPosition.CENTER,
+				new BackgroundSize(Constrains.ROOT_WIDTH, Constrains.ROOT_HEIGHT, true, true, true, true)
+		)));
 
 	}
 
