@@ -39,9 +39,9 @@ public class BattleScene extends StackPane{
         initSizes();
 
         double status_playerY = Constrains.ROOT_HEIGHT - MARGIN_SIZE - STATUS_HEIGHT,
+                status_playerX = Constrains.ROOT_WIDTH - MARGIN_SIZE - STATUS_WIDTH,
                 status_opponentY = MARGIN_SIZE,
-                status_opponentX = Constrains.ROOT_WIDTH - MARGIN_SIZE - STATUS_WIDTH,
-                status_playerX = MARGIN_SIZE;
+                status_opponentX = MARGIN_SIZE;
 
         status_opponent.setLayoutX(status_opponentX);
         status_opponent.setLayoutY(status_opponentY);
