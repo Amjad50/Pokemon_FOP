@@ -25,3 +25,6 @@ hs_err_pid*
 .idea/
 pokemon_FOP.iml
 out/
+/build/
+/dist/
+nbproject/private
