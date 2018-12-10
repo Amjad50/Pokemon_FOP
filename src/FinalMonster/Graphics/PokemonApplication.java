@@ -42,22 +42,4 @@ public class PokemonApplication extends Application {
 	private void runThread(Runnable r) {
 		Platform.runLater(r);
 	}
-
-//	public void addImage(Image img, double x, double y, ImageEditor editor) {
-//		assert controller != null;
-//
-//		ImageView view = new ImageView(img);
-//
-//		view.setLayoutX(x);
-//		view.setLayoutY(y);
-//
-//		editor.edit(view);
-//
-//		runThread(() -> this.controller.addChild(view));
-//	}
-//
-//	public void addImage(String url, double x, double y, ImageEditor editor) {
-//		Image img = new Image(url);
-//		addImage(img, x, y, editor);
-//	}
 }
