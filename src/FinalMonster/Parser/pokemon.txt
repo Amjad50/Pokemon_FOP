@@ -1,0 +1,2027 @@
+Bulbasaur
+Grass/Poison
+45
+65
+65
+45
+Vine Whip
+Grass
+45
+100
+Tackle
+Normal
+40
+100
+Razor Leaf
+Grass
+55
+95
+Seed Bomb
+Grass
+80
+100
+
+Charmander
+Fire
+39
+60
+50
+65
+Scratch
+Normal
+40
+100
+Ember
+Fire
+40
+100
+Fire Fang
+Fire
+65
+95
+Slash
+Normal
+70
+100
+
+Squirtle
+Water
+44
+50
+65
+43
+Tackle
+Normal
+40
+100
+Water Gun
+Water
+40
+100
+Bubble
+Water
+40
+80
+Water Pulse
+Water
+60
+100
+
+Chikorita
+Grass
+45
+49
+65
+45
+Tackle
+Normal
+40
+100
+Razor Leaf
+Grass
+55
+95
+Magical Leaf
+Grass
+60
+100
+Body Slam
+Normal
+85
+100
+
+Cyndaquil
+Fire
+39
+60
+50
+65
+Tackle
+Normal
+40
+100
+Ember
+Fire
+40
+100
+Quick Attack
+Normal
+40
+100
+Swift
+Normal
+60
+100
+
+Totodile
+Water
+50
+65
+64
+43
+Scratch
+Normal
+40
+100
+Water Gun
+Water
+40
+100
+Bite
+Dark
+60
+100
+Slash
+Normal
+70
+100
+
+Treecko
+Grass
+40
+65
+55
+70
+Pound
+Normal
+40
+100
+Quick Attack
+Normal
+40
+100
+Rock Tomb
+Rock
+60
+95
+Mega Drain
+Grass
+40
+100
+
+Torchihc
+Fire
+45
+70
+50
+45
+Scratch
+Normal
+40
+100
+Ember
+Fire
+40
+100
+Peck
+Flying
+35
+100
+Slash
+Normal
+70
+100
+
+Mudkip
+Water
+50
+70
+50
+40
+Tackle
+Normal
+40
+100
+Mud-Slap
+Ground
+20
+100
+Water Gun
+Water
+40
+100
+Rock Throw
+Rock
+50
+90
+
+Turtwig
+Grass
+55
+68
+64
+31
+Tackle
+Normal
+40
+100
+Razor Leaf
+Grass
+55
+95
+Absorb
+Grass
+20
+100
+Cut
+Normal
+50
+95
+
+Chimchar
+Fire
+44
+58
+44
+61
+Scratch
+Normal
+40
+100
+Ember
+Fire
+40
+100
+Flame Wheel 
+Fire
+60
+100
+Facade
+Normal
+70
+100
+
+Piplup
+Water
+53
+61
+56
+40
+Pound
+Normal
+40
+100
+Bubble
+Water
+40
+100
+Peck      
+Flying
+35 
+100
+Bubble Beam
+Water
+65
+100
+
+Snivy
+Grass
+45
+45
+55
+63
+Tackle
+Normal
+40
+100
+Vine Whip
+Grass
+45
+100
+Leaf Tornado
+Grass
+65
+90
+Slam
+Normal
+80
+75
+
+Tepig
+Fire
+65
+63
+45
+45
+Tackle
+Normal
+40
+100
+Ember
+Fire
+40
+100
+Flame Charge
+Fire
+50
+100
+Rollout
+Rock
+30
+90
+
+Oshawott
+Water
+55
+63
+45
+45
+Tackle
+Normal
+40
+100
+Water Gun
+Water
+40
+100
+Aqua Jet
+Water
+40
+100
+Razor Shell
+Water
+75
+95
+
+Ratata
+Normal
+30
+56
+35
+72
+Tackle
+Normal
+40
+100
+Quick Attack 
+Normal
+40
+100
+Hyper Fang
+Normal
+80
+90
+Bite
+Dark
+60
+100
+
+Pidgey
+Normal/Flying
+40
+45
+40
+56
+Tackle
+Normal
+40
+100
+Wing Attack
+Flying
+60
+100
+Gust
+Flying
+40
+100
+Air Slash
+Flying
+75
+95
+
+Sentret
+Normal
+35
+46
+45
+20
+Scratch
+Normal
+40
+100
+Quick Attack
+Normal
+40
+100
+Slam
+Normal
+80
+75
+Fury Swipes
+Normal
+18
+80
+
+Hoothoot
+Normal/Flying
+60
+36
+56
+50
+Tackle
+Normal
+40
+100
+Peck
+Flying
+35
+100
+Air Slash
+Flying
+75
+95
+Extrasensory
+Psychic
+80
+100
+
+Zigzagoon
+Normal
+38
+30
+41
+60
+Tackle 
+Normal
+40
+100
+Headbutt
+Normal
+70
+100
+Pin Missile
+Bug
+25
+95
+Take Down
+Normal
+90
+85
+
+Poochyena
+Dark
+35
+55
+35
+35
+Tackle
+Normal
+40
+100
+Bite
+Dark
+60
+100
+Take Down
+Normal
+90
+85
+Crunch
+Dark
+80
+100
+
+Bidoof
+Normal
+59
+45
+40
+31
+Tackle
+Normal
+40
+100
+Rollout
+Rock
+30
+90
+Crunch
+Dark
+80
+100
+Facade
+Normal
+70
+100
+
+Starly
+Normal/Flying
+40
+55
+30
+60
+Tackle
+Normal
+40
+100
+Quick Attack
+Normal
+40
+100
+Wing Attack
+Flying
+60
+100
+Aerial Ace
+Flying
+60
+100
+
+Patrat
+Normal
+45
+55
+39
+42
+Tackle
+Normal
+40
+100
+Bite
+Dark
+60
+100
+Facade
+Normal
+70
+100
+Hyper Fang
+Normal
+80
+90
+
+Pidove
+Normal/Flying
+50
+55
+50
+43
+Gust
+Flying
+40
+100
+Quick Attack
+Normal
+40
+100
+Round
+Normal
+60
+100
+Air Cutter
+Flying
+60
+95
+
+Ivysaur
+Grass/Poison
+60
+80
+80
+60
+Razor Leaf
+Grass
+55
+100
+Sludge Bomb
+Poison
+90
+100
+Take Down
+Normal
+90
+100
+Energy Ball
+Grass
+90
+100
+
+Charmeleon
+Fire
+58
+80
+65
+80
+Flamethrower
+Fire
+90
+100
+Slash
+Normal
+70
+100
+Metal Claw
+Steel
+50
+95
+Dragon Rage
+Dragon
+40
+100
+
+Wartortle
+Water
+59
+65
+80
+58
+Bubble Beam
+Water
+60
+100
+Skull Bash
+Normal
+130
+100
+Ice Beam
+Ice
+90
+100
+Rock Slide
+Rock
+75
+90
+
+Bayleef
+Grass
+60
+63
+80
+60
+Tackle
+Normal
+40
+100
+Razor Leaf
+Grass
+55
+95
+Magical Leaf
+Grass
+60
+100
+Body Slam
+normal
+85
+100
+
+Quilava
+Fire
+58
+80
+65
+80
+Flame Wheel
+Fire
+60
+100
+Flame Charge
+Fire
+50
+100
+Wild Charge
+Electric
+90
+100
+Rollout
+Rock
+30
+90
+
+Croconaw
+Water
+65
+80
+80
+58
+Crunch
+Dark
+80
+100
+Aqua Tail
+Water
+90
+100
+Brick Break
+Fighting
+75
+100
+Scald
+Water
+80
+100
+
+Grovyle
+Grass
+50
+85
+65
+95
+Quick Attack
+Normal
+40
+100
+Dig 
+Ground
+80
+100
+Leaf Blade
+Grass
+90
+100
+Energy Ball
+Grass
+90
+100
+
+Combusken
+Fire/Fighting
+60
+85
+60
+55
+Double Kick
+Fighting
+30
+100
+Flame Charge
+Fire
+50
+100
+Peck
+Flying
+35
+100
+Slash
+Normal
+70
+100
+
+Marshtomp
+Water/Ground
+70
+85
+70
+50
+Mud Bomb
+Ground
+65
+85
+Muddy Water
+Water
+90
+85
+Rock Slide
+Rock
+75
+90
+Ice Beam
+Ice
+90
+100
+
+Grotle
+Grass
+75
+89
+85
+36
+Razor Leaf
+Grass
+55
+95
+Crunch
+Dark
+80
+100
+Giga Drain
+Grass
+75
+100
+Grass Knot
+Grass
+70
+100
+
+Monferno
+Fire/Fighting
+64
+78
+52
+81
+Mach Punch
+Fighting
+40
+100
+Flamethrower 
+Fire
+90
+100
+Fury Swipes
+Normal
+18
+80
+Thunder Punch
+Electric
+75
+100
+
+Prinplup
+Water
+64
+81
+76
+50
+Metal Claw
+Steel
+50
+95
+Drill Peck
+Flying
+80
+100
+Surf
+Water
+90
+100
+Ice Beam
+Ice
+90
+100
+
+Servine
+Grass
+60
+60
+75
+83
+Leaf Tornado
+Grass
+65
+90
+Wrap
+Normal
+15
+90
+Giga Drain
+Grass
+75
+100
+Aerial Ace
+Flying
+60
+100
+
+Pignite
+Fire/Fighting
+90
+93
+55
+55
+Brick Break
+Fighting
+75
+100
+Heat Crash
+Fire
+80
+100
+Wild Charge
+Electric
+90
+100
+Head Smash
+Rock
+150
+80
+
+Dewott
+Water
+75
+83
+60
+60
+Razor Shell
+Water
+75
+95
+Revenge
+Fighting
+80
+100
+Aerial Ace
+Flying
+60
+100
+Aqua Tail
+Water
+90
+100
+
+Raticate
+Normal
+55
+81
+70
+97
+Quick Attack
+Normal
+40
+100
+Crunch
+Dark
+80
+100
+Hyper Fang
+Normal
+80
+90
+Sucker Punch
+Dark
+70
+100
+
+Pidgeotto
+Normal/Flying
+63
+60
+55
+71
+Wing Attack
+Flying
+60
+100
+Air Slash
+Flying
+75
+95
+Quick Attack
+Normal 
+40
+100
+Razor Wind
+Normal
+80
+100
+
+Furret
+Normal
+85
+76
+64
+90
+Quick Attack
+Normal
+40
+100
+Slam
+Normal
+80
+75
+Sucker Punch
+Dark
+70
+100
+Iron tail
+Steel
+100
+75
+
+Noctowl
+Normal/Flying
+100
+86
+96
+70
+Extrasensory
+Psychic
+80
+100
+Air Slash
+Flying
+75
+95
+Moonblast
+Fairy
+95
+100
+Sky Attack
+Flying
+140
+90
+
+Linoone
+Normal
+78
+70
+61
+100
+Double-Edge
+Normal
+120
+100
+Slash
+Normal
+70
+100
+Thief
+Dark
+60
+100
+Iron Tail
+Steel
+100
+75
+
+Mightyena
+Dark
+70
+90
+70
+70
+Crunch
+Dark
+80
+100
+Play Rough
+Fairy
+90
+90
+Poison Fang
+Poison 
+50
+100
+Fire Fang
+Fire
+65
+100
+
+Bibarel
+Normal/Water
+79
+85
+60
+71
+Scald
+Water
+80
+100
+Surf
+Water
+90
+100
+Take Down
+Normal
+90
+85
+Crunch
+Dark
+80
+100
+
+Staravia
+Normal/Flying
+55
+75
+50
+80
+Aerial Ace
+Flying
+60
+100
+Revenge
+Fighting
+60
+100
+Steel Wing
+Steel
+70
+90
+Quick Attack
+Normal
+40
+100
+
+Watchog
+Normal
+60
+85
+69
+77
+Hyper Fang
+Normal
+80
+90
+Crunch
+Dark
+80
+100
+Retaliate
+Normal
+70
+100
+Zen Headbutt
+Psychic
+80
+90
+
+Tranquill
+Normal/Flying
+62
+77
+62
+65
+Air Slash
+Flying
+75
+95
+Steel Wing
+Steel 
+70
+90
+U-turn
+Bug
+70
+100
+Quick Attack
+Normal
+40
+100
+
+Venusaur
+Grass/Poison
+80
+100
+100
+80
+Sludge Bomb
+Poison
+90
+100
+Earthquake
+Ground
+100
+100
+Frenzy Plant
+Grass
+150
+90
+Petal Dance
+Grass
+120
+100
+
+Charizard
+Fire/Flying
+78
+109
+85
+100
+Blast Burn
+Fire
+150
+85
+Thunder Punch
+Electric
+75
+100
+Dragon Claw
+Dragon
+80
+100
+Earthquake
+Ground
+100
+100
+
+Blastoise
+Water
+79
+85
+105
+78
+Hydro Cannon
+Water
+150
+90
+Rapid Spin
+Normal
+20
+100
+Ice Beam
+Ice
+90
+100
+Flash Cannon
+Steel
+80
+100
+
+Meganium
+Grass
+80
+83
+100
+80
+Frenzy Plant
+Grass
+150
+90
+Earthquake
+Ground
+100
+100
+Dragon Tail
+Dragon
+60
+90
+Petal Blizzard
+Grass
+90
+100
+
+Typhlosion
+Fire
+78
+109
+85
+100
+Blast Burn 
+Fire
+150
+90
+Thunder Punch
+Electric
+75
+100
+Earthquake
+Ground
+100
+100
+Shadow Claw
+Ghost
+70
+100
+
+Feraligatr
+Water
+85
+105
+100
+78
+Hydro Cannon
+Water
+150
+90
+Ice Beam
+Ice
+90
+100
+Earthquake
+Ground 
+100
+100
+Hydro Pump
+Water
+110
+80
+
+Sceptile
+Grass
+70
+105
+85
+120
+Frenzy Plant
+Grass
+150
+90
+Earthquake
+Ground
+100
+100
+Dragon Pulse
+Dragon
+85
+100
+Leaf Blade
+Grass
+90
+100
+
+Blaziken
+Fire/Fighting
+80
+120
+70
+80
+Blast Burn
+Fire
+150
+90
+Flare Blitz
+Fire
+120
+100
+Superpower
+Fighting
+120
+100
+Earthquake
+Ground
+100
+100
+
+Swampert
+Water/Ground
+100
+110
+90
+60
+Hydro Cannon
+Water
+150
+90
+Earthquake
+Ground
+100
+100
+Ice Beam
+Ice
+90
+100
+Superpower
+Fighting
+120
+100
+
+Torterra
+Grass/Ground
+95
+109
+105
+56
+Frenzy Plant
+Grass
+150
+90
+Earthquake
+Ground
+100
+100
+Superpower
+Fighting
+120
+100
+Stone Edge
+Rock
+100
+80
+
+Infernape
+Fire/Fighting
+76
+104
+71
+108
+Blast Burn
+Fire
+150
+90
+Close Combat
+Fighting
+120
+100
+Thunder Punch
+Electric
+75
+100
+Grass Knot
+Grass
+80
+100
+
+Empoleon
+Water/Steel
+84
+111
+101
+60
+Hydro Cannon
+Water
+150
+90
+Drill Peck
+Flying
+80
+100
+Earthquake
+Ground
+100
+100
+Flash Cannon
+Steel
+80
+100
+
+Serperior
+Grass
+75
+75
+95
+113
+Frenzy Plant
+Grass
+150
+90
+Leaf Storm
+Grass
+130
+90
+Dragon Tail
+Dragon
+60
+90
+Leaf Tornado
+Grass
+65
+90
+
+Emboar
+Fire/Fighting
+110
+123
+65
+65
+Blast Burn
+Fire
+150
+90
+Wild Charge
+Electric
+90
+100
+Superpower
+Fighting
+120
+100
+Flare Blitz
+Fire
+120
+100
+
+Samurott
+Water
+95
+108
+85
+70
+Hydro Cannon
+Water
+150
+90
+Ice Beam
+Ice
+90
+100
+Hydro Pump
+Water
+110
+80
+Sacred Sword
+Fighting
+90
+100
+
+Pidgeot
+Normal/Flying
+83
+80
+75
+91
+Sky Attack
+Flying
+140
+90
+Quick Attack
+Normal
+40
+100
+U-Turn
+Bug
+70
+100
+Brave Bird
+Flying
+120
+100
+
+Staraptor
+Normal/Flying
+85
+120
+70
+100
+Brave Bird
+Flying
+120
+100
+Close Combat
+Fighting
+120
+100
+U-turn
+Bug
+70
+100
+Steel Wing
+Steel
+70
+90
+
+Unfezant
+Normal/Flying
+80
+105
+80
+93
+Sky Attack
+Flying
+140
+90
+Quick Attack
+Normal 
+40
+100
+Steel Wing
+Steel
+75
+90
+U-turn
+Bug
+70
+100
+
+Dragonite
+Dragon/Flying
+91
+134
+100
+80
+Outrage
+Dragon
+120
+100
+Fly
+Flying
+90
+95
+Fire Blast
+Fire
+110
+85
+Iron Tail
+Steel
+100
+75
+
+Metagross
+Steel/Psychic
+80
+135
+130
+70
+Bullet Punch
+Steel
+40
+100
+Zen Headbutt
+Psychic
+80
+90
+Earthquake
+Ground
+100
+100
+Ice Punch
+Ice
+75
+100
+
+Salamence
+Dragon/Flying
+95
+135
+80
+100
+Outrage
+Dragon
+120
+100
+Fly
+Flying
+90
+95
+Fire Blast
+Fire
+110
+85
+Shadow Claw
+Ghost
+70
+100
+
+Garchomp
+Dragon/Ground
+108
+130
+95
+102
+Earthquake
+Ground
+100
+100
+Outrage
+Dragon
+120
+100
+Iron Head
+Steel
+80
+100
+Dragon Rush
+Dragon
+100
+75
+
+Hydreigon
+Dark/Dragon
+92
+125
+90
+98
+Focus Blast
+Fighting
+120
+70
+Draco Meteor
+Dragon
+130
+90
+Dark Pulse
+Dark
+80
+100
+Flash Cannon
+Steel
+90
+100
+
+Mewtwo
+Psychic
+106
+154
+90
+130
+Psystrike
+Psychic
+100
+100
+Ice Beam
+Ice 
+90
+100
+Shadow Ball
+Ghost
+80
+100
+Focus Blast
+Fighting
+120
+70
+
+Lugia
+Psychic/Flying
+106
+90
+154
+110
+Aeroblast
+Flying
+100
+95
+Psychic
+Psychic
+90
+100
+Surf
+Water
+90
+100
+Thunderbolt
+Electric
+90
+100
+
+Ho-oh
+Fire/Flying
+106
+130
+154
+90
+Sacred Fire
+Fire
+100
+95
+Earthquake
+Ground
+100
+100
+Sky Attack
+Flying
+140
+90
+Ancient Power
+Rock
+60
+100
+
+Rayquaza
+Dragon/Flying
+105
+150
+90
+95
+Dragon Ascent
+Flying
+120
+100
+Outrage
+Dragon
+120
+100
+Extremespeed
+Normal
+80
+100
+Earthquake
+Ground
+100
+100
+
+Groudon
+Ground
+100
+150
+140
+90
+Precipice Blades
+Ground
+120
+85
+Fire Blast
+Fire
+110
+85
+Solar Beam
+Grass
+120
+100
+Dragon Tail
+Dragon
+60
+90
+
+Kyogre
+Water
+100
+150
+140
+90
+Origin Pulse
+Water
+110
+85
+Thunder
+Electric
+110
+70
+Ice Beam
+Ice
+90
+100
+Water Spout
+Water 
+150
+100
+
+Deoxys
+Psychic
+50
+150
+50
+150
+Psycho Boost
+Psychic
+140
+90
+Extremespeed
+Normal
+80
+100
+Ice Beam
+Ice
+90
+100
+Focus Blast
+Fighting
+120
+70
+
+Dialga
+Steel/Dragon
+100
+150
+120
+90
+Roar of Time
+Dragon
+150
+90
+Flash Cannon
+Steel
+80
+100
+Earth Power
+Ground
+90
+100
+Aura Sphere
+Fighting
+80
+100
+
+Palkia
+Water/Dragon
+90
+150
+120
+100
+Spacial Rend
+Dragon
+100
+95
+Hydro Pump
+Water
+110
+80
+Aura Sphere 
+Fighting
+80
+100
+Earthquake
+Ground
+100
+100
+
+Giratina
+Ghost/Dragon
+150
+100
+120
+90
+Shadow Force
+Ghost
+120
+100
+Aura Sphere
+Fighting
+80
+100
+Dragon Tail
+Dragon
+60
+90
+Earthquake
+Ground
+100
+100
+
+Zekrom
+Dragon/Electric
+100
+150
+120
+90
+Bolt Strike
+Electric
+130
+85
+Outrage
+Dragon
+120
+100
+Crunch
+Dark
+80
+100
+Stone Edge
+Rock
+100
+80
+
+Reshiram
+Dragon/Fire
+100
+150
+120
+90
+Blue Flare
+Fire
+130
+85
+Draco Meteor
+Dragon
+130
+90
+Extrasensory
+Psychic
+80
+100
+Shadow Ball
+Ghost
+80
+100
+
+Kyurem
+Dragon/Ice
+125
+130
+90
+95
+Draco Meteor
+Dragon
+130
+90
+Ice Beam
+Ice
+90
+100
+Focus Blast
+Fighting
+120
+70
+Earth Power
+Ground
+90
+100
+
+Genesect
+Bug/Steel
+71
+120
+95
+99
+Techno Blast
+Normal
+120
+100
+Iron Head
+Steel
+80
+100
+Blaze Kick
+Fire
+85
+90
+Extremespeed
+Normal
+80
+100
+
+Arceus
+Normal
+170
+170
+170
+170
+Judgement
+Normal
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+
+
+
