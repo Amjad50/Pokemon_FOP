@@ -61,6 +61,14 @@ public class BattleScene extends StackPane {
 				BackgroundPosition.DEFAULT,
 				new BackgroundSize(Constrains.ROOT_WIDTH, Constrains.ROOT_HEIGHT, false, false, false, false)
 		)));
+
+		bottomBar.setFightAction(event -> {
+			try {
+				this.root.getScene().setRoot(new SelectionScene());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	private void initSizes() {

@@ -20,7 +20,7 @@ public class PokemonApplication extends Application {
 		Parent root = loader.load();
 
 		Scene scene = new Scene(root);
-
+		scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
 
 		primaryStage.setScene(scene);
 		primaryStage.show();

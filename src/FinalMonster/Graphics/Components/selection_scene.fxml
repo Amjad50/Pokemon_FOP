@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<fx:root fx:id="root" type="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1"
+         xmlns="http://javafx.com/javafx/8">
+  <children>
+    <RadioButton layoutX="90.0" fx:id="opponent" layoutY="64.0" mnemonicParsing="false" onAction="#addPokemons"
+                 text="Charmande"/>
+    <RadioButton layoutX="84.0" fx:id="player" layoutY="107.0" mnemonicParsing="false" onAction="#addPokemons"
+                 text="Ali"/>
+  </children>
+</fx:root>
