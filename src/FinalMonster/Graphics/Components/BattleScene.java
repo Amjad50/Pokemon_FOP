@@ -43,8 +43,8 @@ public class BattleScene extends StackPane {
 	private void initialize() {
 		initSizes();
 
-		double status_playerY = Constrains.ROOT_HEIGHT - MARGIN_SIZE - STATUS_HEIGHT - BOTTOM_HEIGHT,
-				status_playerX = Constrains.ROOT_WIDTH - MARGIN_SIZE - STATUS_WIDTH,
+		double status_playerY = Constrains.ROOT_HEIGHT - MARGIN_SIZE - STATUS_HEIGHT - BOTTOM_HEIGHT - 20,
+				status_playerX = Constrains.ROOT_WIDTH - MARGIN_SIZE - STATUS_WIDTH - 20,
 				status_opponentY = MARGIN_SIZE,
 				status_opponentX = MARGIN_SIZE;
 

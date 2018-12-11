@@ -3,19 +3,30 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.layout.*?>
-<fx:root alignment="TOP_RIGHT" prefHeight="50" prefWidth="250.0" type="javafx.scene.layout.HBox"
-         xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
-  <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" text="Label" textAlignment="CENTER"
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root alignment="TOP_RIGHT" maxWidth="400" minWidth="200" prefHeight="50"
+         style="-fx-background-color: dimgray; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #A9A7A5; -fx-border-width: 3;"
+         type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.172-ea"
+         xmlns:fx="http://javafx.com/fxml/1">
+  <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" text="sdafs" textAlignment="CENTER" textFill="white"
          HBox.hgrow="ALWAYS">
     <HBox.margin>
-      <Insets right="10.0"/>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </HBox.margin>
+    <font>
+      <Font name="3ds" size="17.0"/>
+    </font>
   </Label>
   <VBox alignment="CENTER_RIGHT">
     <ProgressBar fx:id="accumulator" maxHeight="10.0" minHeight="10.0" prefWidth="200.0" progress="0"/>
     <ProgressBar fx:id="health" prefWidth="200.0" progress="1" style="-fx-accent: #eeee1f;"/>
-    <Label fx:id="health_text"/>
+    <Label fx:id="health_text" textFill="white"/>
+    <HBox.margin>
+      <Insets bottom="10.0" right="10.0" top="10.0"/>
+    </HBox.margin>
 
   </VBox>
 </fx:root>
