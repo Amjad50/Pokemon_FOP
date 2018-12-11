@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import java.util.ArrayList?>
-<fx:root opacity="0.75" prefHeight="100" prefWidth="650" style="-fx-background-color: #000;"
+<fx:root opacity="0.75" prefHeight="100" prefWidth="750" style="-fx-background-color: #000;"
          type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.172-ea"
          xmlns:fx="http://javafx.com/fxml/1">
   <VBox>
