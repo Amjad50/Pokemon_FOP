@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
@@ -25,6 +26,9 @@ public class BottomBar extends HBox {
 
 	@FXML
 	private HBox moves_bar;
+
+	@FXML
+	private GridPane controls;
 
 	@FXML
 	private Button btnFight;
@@ -68,7 +72,7 @@ public class BottomBar extends HBox {
 		}
 	}
 
-	public void setMovesVisibility(boolean value) {
+	public void setMovesVisibile(boolean value) {
 		if ( value != this.movesShown ) {
 			this.movesShown = value;
 			this.moves_bar.setVisible(value);
@@ -78,6 +82,14 @@ public class BottomBar extends HBox {
 
 	public boolean isMovesVisible() {
 		return this.movesShown;
+	}
+
+	public void setControlsVisibile(boolean value) {
+		this.controls.setVisible(value);
+	}
+
+	public boolean isControlsVisible() {
+		return this.controls.isVisible();
 	}
 
 
