@@ -7,17 +7,16 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class Parser {
 
-	private static final int POKEMON_ARR_SIZE = 88;
+	private static final int POKEMON_ARR_SIZE = 111;
 
 	public static Pokemon[] scan() {
 		try {
 			Scanner s = new Scanner(new FileInputStream(Parser.class.getResource("pokemon.txt").getPath()));
 			Pokemon[] pokemon = new Pokemon[POKEMON_ARR_SIZE];
 			for ( int j = 0; j < POKEMON_ARR_SIZE; j++ ) {
-				String id = s.nextLine();
+				String ID = s.nextLine();
 				String name = s.nextLine();
 				String type = s.nextLine();
 				int hp = s.nextInt();
@@ -33,13 +32,16 @@ public class Parser {
 					String movetype = s.nextLine();
 					int power = s.nextInt();
 					int accuracy = s.nextInt();
-
-					s.nextLine();
+					if ( s.hasNext() ) {
+						s.nextLine();
+					}
 					moves[i] = new Move(movename, movetype, power, accuracy);
+
 				}
 				if ( s.hasNext() )
 					s.nextLine();
-				pokemon[j] = new Pokemon(id, name, type, hp, attack, defense, speed, moves);
+
+				pokemon[j] = new Pokemon(ID, name, type, hp, attack, defense, speed, moves);
 			}
 
 			return pokemon;

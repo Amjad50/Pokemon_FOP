@@ -56,7 +56,7 @@ public class PokemonList {
 		return Easy;
 	}
 
-	public Pokemon[] Normal() {
+	public static Pokemon[] Normal() {
 		if ( Normal == null ) {
 			Normal = new Pokemon[3];
 			for ( int i = 0; i < Normal.length; i++ ) {
@@ -72,7 +72,7 @@ public class PokemonList {
 		return Normal;
 	}
 
-	public Pokemon[] Hard() {
+	public static Pokemon[] Hard() {
 		if ( Hard == null ) {
 			Hard = new Pokemon[3];
 			for ( int i = 0; i < Hard.length; i++ ) {
@@ -88,7 +88,7 @@ public class PokemonList {
 		return Hard;
 	}
 
-	public Pokemon[] Legend() {
+	public static Pokemon[] Legend() {
 		if ( Legend == null ) {
 			Legend = new Pokemon[3];
 			for ( int i = 0; i < Legend.length; i++ ) {
