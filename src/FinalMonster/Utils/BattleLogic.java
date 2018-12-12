@@ -13,12 +13,12 @@ public class BattleLogic {
 		boolean miss;
 
 		if ( missChance >= 1 )
-			miss = rand.nextInt() == 1;
+			miss = rand.nextInt(missChance) == 1;
 		else
 			miss = false;
 
 		if ( miss )
-			return new AttackResult(AttackStatus.MISS);
+			return new AttackResult(AttackStatus.MISS, defendingPokemon.getHp());
 
 		double multiplier = getMultiplierPower(attackingMove.getType(), defendingPokemon.getType());
 		int damage = (int) ( ( ( ( attackingPower * attackingMove.getPower() / defendingPokemon.getDefense() )
@@ -29,9 +29,7 @@ public class BattleLogic {
 		int newHP = defendingPokemon.getHp() - damage;
 		newHP = ( newHP < 0 ) ? 0 : newHP;
 
-		defendingPokemon.setHp(newHP);
-
-		return new AttackResult(multiplier);
+		return new AttackResult(multiplier, newHP);
 	}
 
 	private static double getMultiplierPower(String attType, String defType) {
@@ -41,12 +39,14 @@ public class BattleLogic {
 
 	public static class AttackResult {
 		private AttackStatus status;
+		private int newHP;
 
-		private AttackResult(AttackStatus status) {
+		private AttackResult(AttackStatus status, int newHP) {
 			this.status = status;
+			this.newHP = newHP;
 		}
 
-		private AttackResult(double multiplier) {
+		private AttackResult(double multiplier, int newHP) {
 			if ( multiplier == 0 )
 				this.status = AttackStatus.NOT_EFFECTIVE;
 			else if ( multiplier == 1 )
@@ -56,12 +56,16 @@ public class BattleLogic {
 				this.status = AttackStatus.SUPER_EFFECTIVE;
 			else if ( multiplier == 0.5 ) {
 				this.status = AttackStatus.NOT_VERY_EFFECTIVE;
-
 			}
+			this.newHP = newHP;
 		}
 
 		public AttackStatus getStatus() {
 			return status;
+		}
+
+		public int getNewHP() {
+			return newHP;
 		}
 	}
 

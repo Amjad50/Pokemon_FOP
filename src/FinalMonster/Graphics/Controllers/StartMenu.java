@@ -15,7 +15,7 @@ public class StartMenu {
 
 	@FXML
 	private void newGame(ActionEvent actionEvent) throws IOException {
-		root.getScene().setRoot(new BattleScene("test", PokemonList.Easy(), "another", PokemonList.Normal()));
+		root.getScene().setRoot(new BattleScene("test", PokemonList.Legend(), "another", PokemonList.Normal()));
 	}
 
 	@FXML
