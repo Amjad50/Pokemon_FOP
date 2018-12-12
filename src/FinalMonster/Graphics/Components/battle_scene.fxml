@@ -6,8 +6,8 @@
          xmlns:fx="http://javafx.com/fxml/1" type="StackPane">
   <Pane fx:id="normal_pane"/>
   <Pane fx:id="status_pane">
-    <StatusBar fx:id="status_player"/>
-    <StatusBar fx:id="status_opponent"/>
+    <StatusBar fx:id="status_player" visible="false"/>
+    <StatusBar fx:id="status_opponent" visible="false"/>
   </Pane>
   <Pane>
     <BottomBar fx:id="bottomBar" maxHeight="100" prefHeight="100"/>
