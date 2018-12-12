@@ -48,8 +48,11 @@ public class Move {
 
 	@Override
 	public String toString() {
-		return "\nMove: " + name + "\nType: " + type + "\nPower: " + power + "\nAccuracy: " + accuracy;
+		return "Move{" +
+				"name='" + name + '\'' +
+				", type='" + type + '\'' +
+				", power=" + power +
+				", accuracy=" + accuracy +
+				'}';
 	}
-
-
 }

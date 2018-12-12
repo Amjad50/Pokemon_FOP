@@ -1,6 +1,8 @@
 
 package FinalMonster.Parser;
 
+import java.util.Arrays;
+
 public class Pokemon {
 	private String id;
 	private String name;
@@ -90,13 +92,16 @@ public class Pokemon {
 
 	@Override
 	public String toString() {
-		String a = "Pokemon(" + id + "): " + name + "\nType: " + type + "\nHP: " + hp + "\nAttack: " + attack + "\nDefense: " + defense + "\nSpeed: " + speed;
-		for ( int i = 0; i < 4; i++ ) {
-			a += moves[i].toString();
-		}
-
-		return a;
+		return "Pokemon{" +
+				"id='" + id + '\'' +
+				", name='" + name + '\'' +
+				", type='" + type + '\'' +
+				", hp=" + hp +
+				", fullHp=" + fullHp +
+				", attack=" + attack +
+				", defense=" + defense +
+				", speed=" + speed +
+				", moves=" + Arrays.toString(moves) +
+				'}';
 	}
-
-
 }
