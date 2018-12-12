@@ -6,6 +6,7 @@ public class Pokemon {
 	private String name;
 	private String type;
 	private int hp;
+	private int fullHp;
 	private int attack;
 	private int defense;
 	private int speed;
@@ -16,13 +17,14 @@ public class Pokemon {
 		this.name = name;
 		this.type = type;
 		this.hp = hp;
+		this.fullHp = hp;
 		this.attack = attack;
 		this.defense = defense;
 		this.speed = speed;
 		this.moves = moves;
 	}
 
-	private String getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -52,6 +54,10 @@ public class Pokemon {
 
 	public Move[] getMoves() {
 		return moves;
+	}
+
+	public int getFullHp() {
+		return fullHp;
 	}
 
 	public void setName(String name) {
@@ -88,7 +94,6 @@ public class Pokemon {
 		for ( int i = 0; i < 4; i++ ) {
 			a += moves[i].toString();
 		}
-		;
 
 		return a;
 	}
