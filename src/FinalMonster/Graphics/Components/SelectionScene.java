@@ -55,7 +55,7 @@ public class SelectionScene extends AnchorPane {
         @FXML
         public void play(ActionEvent e) throws IOException{
         
-            root.getScene().setRoot(new BattleScene(pokes));
+            root.getScene().setRoot(new BattleScene());
             
         }
 

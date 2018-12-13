@@ -51,4 +51,14 @@ public class Parser {
 		}
 
 	}
+        public Pokemon getPokemon(String name){
+        Pokemon[] p = scan();
+        Pokemon chosen = null;
+        for(int i=0; i < p.length; i++){
+        if(p[i].getName().equalsIgnoreCase(name)){
+            chosen = p[i];
+        }
+        }
+        return chosen;
+        }
 }
