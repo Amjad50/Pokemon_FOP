@@ -1,6 +1,7 @@
 package FinalMonster.Graphics.Controllers;
 
 import FinalMonster.Graphics.Components.BattleScene;
+import FinalMonster.Graphics.Components.SelectionScene;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ public class StartMenu {
 
 	@FXML
 	private void newGame(ActionEvent actionEvent) throws IOException {
-		root.getScene().setRoot(new BattleScene());
+		root.getScene().setRoot(new SelectionScene());
 	}
 
 	@FXML

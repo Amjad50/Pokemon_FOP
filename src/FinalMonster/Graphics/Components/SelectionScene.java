@@ -22,7 +22,7 @@ public class SelectionScene extends AnchorPane {
 	@FXML
 	private RadioButton player;
 
-	public ArrayList pokes;
+	public ArrayList pokes = new ArrayList();
 
 	public SelectionScene() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("selection_scene.fxml"));
@@ -34,7 +34,7 @@ public class SelectionScene extends AnchorPane {
 
 	@FXML
 	private void initialize() {
-
+                
 		root.setBackground(new Background(new BackgroundImage(
 				new Image(ImageDB.BG[0]),
 				BackgroundRepeat.NO_REPEAT,
@@ -46,8 +46,17 @@ public class SelectionScene extends AnchorPane {
 	}
 
 	@FXML
-	public void addPokemons(ActionEvent actionEvent) {
-		System.out.println(actionEvent.getSource());
+	public void addPokemons(ActionEvent e) {
+            RadioButton pokemons = (RadioButton) e.getSource();
+		pokes.add(pokemons.getId());
+                System.out.println(pokemons.getId());
 	}
+        
+        @FXML
+        public void play(ActionEvent e) throws IOException{
+        
+            root.getScene().setRoot(new BattleScene(pokes));
+            
+        }
 
 }

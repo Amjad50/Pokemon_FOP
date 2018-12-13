@@ -1,3 +1,11 @@
+#pikachu::before{
+    -fx-background-image: url(../resources/pikachu.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+}
+
+
 #start {
     -fx-background-image: url(../resources/start.jpg);
     -fx-background-repeat: stretch;
@@ -15,4 +23,29 @@
     -fx-background-color: yellow;
     -fx-font-size: 20px;
     -fx-transition: all;
+}
+
+#pikachu{
+    -fx-background-image: url(../resources/pikachu.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}
+#charmander{
+    -fx-background-image: url(../resources/charmander.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}
+#mew{
+    -fx-background-image: url(../resources/mew.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}
+#bulbasaur{
+    -fx-background-image: url(../resources/Bulbasaur.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
 }

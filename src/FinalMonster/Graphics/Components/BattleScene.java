@@ -9,8 +9,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BattleScene extends StackPane {
+    
+        private ArrayList pokemons;
 
 	private final double MARGIN_SIZE = 20,
 			STATUS_WIDTH = 250,
@@ -30,13 +34,15 @@ public class BattleScene extends StackPane {
 
 	@FXML
 	private BottomBar bottomBar;
+        
 
-	public BattleScene() throws IOException {
+	public BattleScene(ArrayList pokemons) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("battle_scene.fxml"));
 		loader.setRoot(this);
 		loader.setController(this);
-
 		loader.load();
+                this.pokemons = pokemons;
+                System.out.println(Arrays.toString(pokemons.toArray()));
 	}
 
 	@FXML
