@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
@@ -25,6 +26,9 @@ public class BottomBar extends HBox {
 
 	@FXML
 	private HBox moves_bar;
+
+	@FXML
+	private GridPane controls;
 
 	@FXML
 	private Button btnFight;
@@ -47,16 +51,30 @@ public class BottomBar extends HBox {
 		loader.load();
 	}
 
-	public boolean setText(String string) {
+	public boolean setText(String string, Callback callable) {
 		if ( currentAnim != null && currentAnim.getStatus() != Animation.Status.STOPPED ) {
-			this.text.setText(typingString);
+			this.text.setText("");
 			currentAnim.stop();
-			return false;
+//			return false;
 		}
 		typingString = string;
-		currentAnim = Utils.typeText(this.text, string, () -> {
-		});
+		currentAnim = Utils.typeText(this.text, string, callable);
 		return true;
+	}
+
+	public boolean setText(String string) {
+		return setText(string, () -> {
+		});
+	}
+
+	public void setTextForce(String string) {
+		if ( !setText(string) )
+			setText(string);
+	}
+
+	public void setTextForce(String string, Callback callable) {
+		if ( !setText(string, callable) )
+			setText(string, callable);
 	}
 
 	public void setMoves(MoveHandler[] moves_) {
@@ -68,7 +86,7 @@ public class BottomBar extends HBox {
 		}
 	}
 
-	public void setMovesVisibility(boolean value) {
+	public void setMovesVisibile(boolean value) {
 		if ( value != this.movesShown ) {
 			this.movesShown = value;
 			this.moves_bar.setVisible(value);
@@ -78,6 +96,14 @@ public class BottomBar extends HBox {
 
 	public boolean isMovesVisible() {
 		return this.movesShown;
+	}
+
+	public void setControlsVisibile(boolean value) {
+		this.controls.setVisible(value);
+	}
+
+	public boolean isControlsVisible() {
+		return this.controls.isVisible();
 	}
 
 
@@ -93,8 +119,29 @@ public class BottomBar extends HBox {
 		this.btnPokemon.setOnAction(handler);
 	}
 
-	public class MoveHandler {
+	public static class MoveHandler {
 		private String name;
 		private Callback callable;
+
+		public MoveHandler(String name, Callback callable) {
+			this.name = name;
+			this.callable = callable;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public Callback getCallable() {
+			return callable;
+		}
+
+		public void setCallable(Callback callable) {
+			this.callable = callable;
+		}
 	}
 }

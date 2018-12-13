@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import java.util.ArrayList?>
-<fx:root opacity="0.75" prefHeight="100" prefWidth="650" style="-fx-background-color: #000;"
+<fx:root opacity="0.75" prefHeight="100" prefWidth="750" style="-fx-background-color: #000;"
          type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/8.0.172-ea"
          xmlns:fx="http://javafx.com/fxml/1">
   <VBox>
@@ -29,8 +29,9 @@
     </HBox>
   </VBox>
 
-  <GridPane alignment="CENTER" hgap="5.0" minWidth="200" prefHeight="Infinity" prefWidth="200" vgap="5.0"
-            HBox.hgrow="ALWAYS">
+  <GridPane fx:id="controls" alignment="CENTER" hgap="5.0" minWidth="200" prefHeight="Infinity" prefWidth="200"
+            vgap="5.0"
+            HBox.hgrow="ALWAYS" visible="false">
     <Button fx:id="btnFight" prefHeight="Infinity" prefWidth="Infinity" text="Fight" GridPane.columnIndex="0"
             GridPane.columnSpan="2"
             GridPane.rowIndex="0"/>

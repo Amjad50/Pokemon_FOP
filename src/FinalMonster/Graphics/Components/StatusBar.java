@@ -100,13 +100,13 @@ public class StatusBar extends HBox {
 		return this.current_hp;
 	}
 
-	public double getAccumulator() {
-		return accumulator.progressProperty().get();
+	public int getAccumulator() {
+		return (int) ( accumulator.progressProperty().get() * 100 );
 	}
 
-	public void setAccumulator(int value_, Callback callable) {
+	public int setAccumulator(int value_, Callback.WithArg<Integer> callable) {
 		Timeline n = new Timeline();
-
+		int excess = value_ - 100;
 
 		double value = value_ / 100.0;
 		assert value >= getAccumulator();
@@ -120,12 +120,14 @@ public class StatusBar extends HBox {
 						this.setAccumulator(current_a - tmp);
 					} else {
 						n.stop();
-						callable.call();
+						callable.call(( excess < 0 ) ? 0 : excess);
 					}
 				})
 		);
 		n.setCycleCount(Animation.INDEFINITE);
 		n.play();
+
+		return ( excess < 0 ) ? 0 : excess;
 	}
 
 	public void setAccumulator(int value) {

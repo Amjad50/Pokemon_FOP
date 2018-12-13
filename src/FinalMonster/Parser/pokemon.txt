@@ -1,5 +1,6 @@
+001
 Bulbasaur
-Grass/Poison
+Grass
 45
 65
 65
@@ -21,6 +22,7 @@ Grass
 80
 100
 
+004
 Charmander
 Fire
 39
@@ -44,6 +46,7 @@ Normal
 70
 100
 
+007
 Squirtle
 Water
 44
@@ -67,6 +70,7 @@ Water
 60
 100
 
+152
 Chikorita
 Grass
 45
@@ -90,6 +94,7 @@ Normal
 85
 100
 
+155
 Cyndaquil
 Fire
 39
@@ -113,6 +118,7 @@ Normal
 60
 100
 
+158
 Totodile
 Water
 50
@@ -136,6 +142,7 @@ Normal
 70
 100
 
+252
 Treecko
 Grass
 40
@@ -159,6 +166,7 @@ Grass
 40
 100
 
+256
 Torchihc
 Fire
 45
@@ -182,6 +190,7 @@ Normal
 70
 100
 
+258
 Mudkip
 Water
 50
@@ -205,6 +214,7 @@ Rock
 50
 90
 
+387
 Turtwig
 Grass
 55
@@ -228,6 +238,7 @@ Normal
 50
 95
 
+390
 Chimchar
 Fire
 44
@@ -242,7 +253,7 @@ Ember
 Fire
 40
 100
-Flame Wheel 
+Flame Wheel
 Fire
 60
 100
@@ -251,6 +262,7 @@ Normal
 70
 100
 
+393
 Piplup
 Water
 53
@@ -265,15 +277,16 @@ Bubble
 Water
 40
 100
-Peck      
+Peck
 Flying
-35 
+35
 100
 Bubble Beam
 Water
 65
 100
 
+495
 Snivy
 Grass
 45
@@ -297,6 +310,7 @@ Normal
 80
 75
 
+498
 Tepig
 Fire
 65
@@ -320,6 +334,7 @@ Rock
 30
 90
 
+501
 Oshawott
 Water
 55
@@ -343,6 +358,7 @@ Water
 75
 95
 
+019
 Ratata
 Normal
 30
@@ -353,7 +369,7 @@ Tackle
 Normal
 40
 100
-Quick Attack 
+Quick Attack
 Normal
 40
 100
@@ -366,8 +382,9 @@ Dark
 60
 100
 
+016
 Pidgey
-Normal/Flying
+Flying
 40
 45
 40
@@ -389,6 +406,7 @@ Flying
 75
 95
 
+161
 Sentret
 Normal
 35
@@ -412,8 +430,9 @@ Normal
 18
 80
 
+163
 Hoothoot
-Normal/Flying
+Flying
 60
 36
 56
@@ -435,13 +454,14 @@ Psychic
 80
 100
 
+263
 Zigzagoon
 Normal
 38
 30
 41
 60
-Tackle 
+Tackle
 Normal
 40
 100
@@ -458,6 +478,7 @@ Normal
 90
 85
 
+261
 Poochyena
 Dark
 35
@@ -481,6 +502,7 @@ Dark
 80
 100
 
+399
 Bidoof
 Normal
 59
@@ -504,8 +526,9 @@ Normal
 70
 100
 
+396
 Starly
-Normal/Flying
+Flying
 40
 55
 30
@@ -527,6 +550,7 @@ Flying
 60
 100
 
+504
 Patrat
 Normal
 45
@@ -550,8 +574,9 @@ Normal
 80
 90
 
+519
 Pidove
-Normal/Flying
+Flying
 50
 55
 50
@@ -573,8 +598,9 @@ Flying
 60
 95
 
+002
 Ivysaur
-Grass/Poison
+Grass
 60
 80
 80
@@ -596,6 +622,7 @@ Grass
 90
 100
 
+005
 Charmeleon
 Fire
 58
@@ -619,6 +646,7 @@ Dragon
 40
 100
 
+008
 Wartortle
 Water
 59
@@ -642,6 +670,7 @@ Rock
 75
 90
 
+153
 Bayleef
 Grass
 60
@@ -665,6 +694,7 @@ normal
 85
 100
 
+156
 Quilava
 Fire
 58
@@ -688,6 +718,7 @@ Rock
 30
 90
 
+159
 Croconaw
 Water
 65
@@ -711,6 +742,7 @@ Water
 80
 100
 
+253
 Grovyle
 Grass
 50
@@ -721,7 +753,7 @@ Quick Attack
 Normal
 40
 100
-Dig 
+Dig
 Ground
 80
 100
@@ -734,8 +766,9 @@ Grass
 90
 100
 
+256
 Combusken
-Fire/Fighting
+Fire
 60
 85
 60
@@ -757,8 +790,9 @@ Normal
 70
 100
 
+259
 Marshtomp
-Water/Ground
+Water
 70
 85
 70
@@ -780,6 +814,7 @@ Ice
 90
 100
 
+388
 Grotle
 Grass
 75
@@ -803,8 +838,9 @@ Grass
 70
 100
 
+391
 Monferno
-Fire/Fighting
+Fire
 64
 78
 52
@@ -813,7 +849,7 @@ Mach Punch
 Fighting
 40
 100
-Flamethrower 
+Flamethrower
 Fire
 90
 100
@@ -826,6 +862,7 @@ Electric
 75
 100
 
+394
 Prinplup
 Water
 64
@@ -849,6 +886,7 @@ Ice
 90
 100
 
+496
 Servine
 Grass
 60
@@ -872,9 +910,10 @@ Flying
 60
 100
 
+499
 Pignite
-Fire/Fighting
-90
+Fire
+901
 93
 55
 55
@@ -895,6 +934,7 @@ Rock
 150
 80
 
+501
 Dewott
 Water
 75
@@ -918,6 +958,7 @@ Water
 90
 100
 
+020
 Raticate
 Normal
 55
@@ -941,8 +982,9 @@ Dark
 70
 100
 
+017
 Pidgeotto
-Normal/Flying
+Flying
 63
 60
 55
@@ -956,7 +998,7 @@ Flying
 75
 95
 Quick Attack
-Normal 
+Normal
 40
 100
 Razor Wind
@@ -964,6 +1006,7 @@ Normal
 80
 100
 
+162
 Furret
 Normal
 85
@@ -987,8 +1030,9 @@ Steel
 100
 75
 
+164
 Noctowl
-Normal/Flying
+Flying
 100
 86
 96
@@ -1010,6 +1054,7 @@ Flying
 140
 90
 
+264
 Linoone
 Normal
 78
@@ -1033,6 +1078,7 @@ Steel
 100
 75
 
+262
 Mightyena
 Dark
 70
@@ -1048,7 +1094,7 @@ Fairy
 90
 90
 Poison Fang
-Poison 
+Poison
 50
 100
 Fire Fang
@@ -1056,8 +1102,9 @@ Fire
 65
 100
 
+400
 Bibarel
-Normal/Water
+Water
 79
 85
 60
@@ -1079,8 +1126,9 @@ Dark
 80
 100
 
+397
 Staravia
-Normal/Flying
+Flying
 55
 75
 50
@@ -1102,6 +1150,7 @@ Normal
 40
 100
 
+505
 Watchog
 Normal
 60
@@ -1125,8 +1174,9 @@ Psychic
 80
 90
 
+520
 Tranquill
-Normal/Flying
+Flying
 62
 77
 62
@@ -1136,7 +1186,7 @@ Flying
 75
 95
 Steel Wing
-Steel 
+Steel
 70
 90
 U-turn
@@ -1148,8 +1198,9 @@ Normal
 40
 100
 
+003
 Venusaur
-Grass/Poison
+Grass
 80
 100
 100
@@ -1171,8 +1222,9 @@ Grass
 120
 100
 
+006
 Charizard
-Fire/Flying
+Fire
 78
 109
 85
@@ -1194,6 +1246,7 @@ Ground
 100
 100
 
+009
 Blastoise
 Water
 79
@@ -1217,6 +1270,7 @@ Steel
 80
 100
 
+154
 Meganium
 Grass
 80
@@ -1240,13 +1294,14 @@ Grass
 90
 100
 
+157
 Typhlosion
 Fire
 78
 109
 85
 100
-Blast Burn 
+Blast Burn
 Fire
 150
 90
@@ -1263,6 +1318,7 @@ Ghost
 70
 100
 
+160
 Feraligatr
 Water
 85
@@ -1278,7 +1334,7 @@ Ice
 90
 100
 Earthquake
-Ground 
+Ground
 100
 100
 Hydro Pump
@@ -1286,6 +1342,7 @@ Water
 110
 80
 
+254
 Sceptile
 Grass
 70
@@ -1309,8 +1366,9 @@ Grass
 90
 100
 
+257
 Blaziken
-Fire/Fighting
+Fire
 80
 120
 70
@@ -1332,8 +1390,9 @@ Ground
 100
 100
 
+260
 Swampert
-Water/Ground
+Water
 100
 110
 90
@@ -1355,8 +1414,9 @@ Fighting
 120
 100
 
+389
 Torterra
-Grass/Ground
+Ground
 95
 109
 105
@@ -1378,8 +1438,9 @@ Rock
 100
 80
 
+392
 Infernape
-Fire/Fighting
+Fighting
 76
 104
 71
@@ -1401,8 +1462,9 @@ Grass
 80
 100
 
+395
 Empoleon
-Water/Steel
+Steel
 84
 111
 101
@@ -1424,6 +1486,7 @@ Steel
 80
 100
 
+497
 Serperior
 Grass
 75
@@ -1447,8 +1510,9 @@ Grass
 65
 90
 
+500
 Emboar
-Fire/Fighting
+Fire
 110
 123
 65
@@ -1470,6 +1534,7 @@ Fire
 120
 100
 
+503
 Samurott
 Water
 95
@@ -1493,8 +1558,9 @@ Fighting
 90
 100
 
+018
 Pidgeot
-Normal/Flying
+Flying
 83
 80
 75
@@ -1516,8 +1582,9 @@ Flying
 120
 100
 
+398
 Staraptor
-Normal/Flying
+Flying
 85
 120
 70
@@ -1539,8 +1606,9 @@ Steel
 70
 90
 
+521
 Unfezant
-Normal/Flying
+Flying
 80
 105
 80
@@ -1550,7 +1618,7 @@ Flying
 140
 90
 Quick Attack
-Normal 
+Normal
 40
 100
 Steel Wing
@@ -1562,8 +1630,9 @@ Bug
 70
 100
 
+149
 Dragonite
-Dragon/Flying
+Dragon
 91
 134
 100
@@ -1585,8 +1654,9 @@ Steel
 100
 75
 
+376
 Metagross
-Steel/Psychic
+Steel
 80
 135
 130
@@ -1608,8 +1678,9 @@ Ice
 75
 100
 
+373
 Salamence
-Dragon/Flying
+Dragon
 95
 135
 80
@@ -1631,8 +1702,9 @@ Ghost
 70
 100
 
+445
 Garchomp
-Dragon/Ground
+Dragon
 108
 130
 95
@@ -1654,8 +1726,9 @@ Dragon
 100
 75
 
+635
 Hydreigon
-Dark/Dragon
+Dragon
 92
 125
 90
@@ -1677,6 +1750,7 @@ Steel
 90
 100
 
+150
 Mewtwo
 Psychic
 106
@@ -1688,7 +1762,7 @@ Psychic
 100
 100
 Ice Beam
-Ice 
+Ice
 90
 100
 Shadow Ball
@@ -1700,8 +1774,9 @@ Fighting
 120
 70
 
+249
 Lugia
-Psychic/Flying
+Flying
 106
 90
 154
@@ -1723,8 +1798,9 @@ Electric
 90
 100
 
+250
 Ho-oh
-Fire/Flying
+Fire
 106
 130
 154
@@ -1746,8 +1822,9 @@ Rock
 60
 100
 
+384
 Rayquaza
-Dragon/Flying
+Flying
 105
 150
 90
@@ -1769,6 +1846,7 @@ Ground
 100
 100
 
+383
 Groudon
 Ground
 100
@@ -1792,6 +1870,7 @@ Dragon
 60
 90
 
+382
 Kyogre
 Water
 100
@@ -1811,10 +1890,11 @@ Ice
 90
 100
 Water Spout
-Water 
+Water
 150
 100
 
+386
 Deoxys
 Psychic
 50
@@ -1838,8 +1918,81 @@ Fighting
 120
 70
 
+386
+Deoxys Attack Form
+Psychic
+50
+180
+20
+150
+Psycho Boost
+Psychic
+140
+90
+Extremespeed
+Normal
+80
+100
+Ice Beam
+Ice
+90
+100
+Focus Blast
+Fighting
+120
+70
+
+386
+Deoxys Defense Form
+Psychic
+50
+70
+160
+90
+Psycho Boost
+Psychic
+140
+90
+Extremespeed
+Normal
+80
+100
+Ice Beam
+Ice
+90
+100
+Focus Blast
+Fighting
+120
+70
+
+386
+Deoxys Speed Form
+Psychic
+50
+95
+90
+180
+Psycho Boost
+Psychic
+140
+90
+Extremespeed
+Normal
+80
+100
+Ice Beam
+Ice
+90
+100
+Focus Blast
+Fighting
+120
+70
+
+483
 Dialga
-Steel/Dragon
+Dragon
 100
 150
 120
@@ -1861,8 +2014,9 @@ Fighting
 80
 100
 
+484
 Palkia
-Water/Dragon
+Dragon
 90
 150
 120
@@ -1875,7 +2029,7 @@ Hydro Pump
 Water
 110
 80
-Aura Sphere 
+Aura Sphere
 Fighting
 80
 100
@@ -1884,8 +2038,9 @@ Ground
 100
 100
 
-Giratina
-Ghost/Dragon
+487
+Giratina Altered form
+Ghost
 150
 100
 120
@@ -1907,8 +2062,33 @@ Ground
 100
 100
 
+487
+Giratina Origin form
+Ghost
+150
+120
+100
+90
+Shadow Force
+Ghost
+120
+100
+Aura Sphere
+Fighting
+80
+100
+Dragon Tail
+Dragon
+60
+90
+Earthquake
+Ground
+100
+100
+
+644
 Zekrom
-Dragon/Electric
+Electric
 100
 150
 120
@@ -1930,8 +2110,9 @@ Rock
 100
 80
 
+643
 Reshiram
-Dragon/Fire
+Fire
 100
 150
 120
@@ -1953,8 +2134,9 @@ Ghost
 80
 100
 
+646
 Kyurem
-Dragon/Ice
+Ice
 125
 130
 90
@@ -1976,8 +2158,57 @@ Ground
 90
 100
 
+646_2
+Black Kyurem
+Dragon
+125
+170
+100
+95
+Outrage
+Dragon
+120
+90
+Freeze Shock
+Ice
+140
+90
+Focus Blast
+Fighting
+120
+70
+Fusion Bolt
+Electric
+100
+100
+
+646_1
+White Kyurem
+Dragon
+125
+170
+100
+95
+Draco Meteor
+Dragon
+130
+90
+Ice Burn
+Ice
+140
+90
+Fusion Flare
+Fire
+100
+100
+Earth Power
+Ground
+90
+100
+
+649
 Genesect
-Bug/Steel
+Steel
 71
 120
 95
@@ -1999,12 +2230,13 @@ Normal
 80
 100
 
+493
 Arceus
 Normal
-170
-170
-170
-170
+180
+180
+180
+180
 Judgement
 Normal
 200
@@ -2022,6 +2254,410 @@ Ghost
 120
 100
 
+493
+Arceus
+Fire
+180
+180
+180
+180
+Judgement
+Fire
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
 
+493
+Arceus
+Water
+180
+180
+180
+180
+Judgement
+Water
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
 
+493
+Arceus
+Grass
+180
+180
+180
+180
+Judgement
+Grass
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
 
+493
+Arceus
+Rock
+180
+180
+180
+180
+Judgement
+Rock
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Electric
+180
+180
+180
+180
+Judgement
+Electric
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Ground
+180
+180
+180
+180
+Judgement
+Ground
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Ice
+180
+180
+180
+180
+Judgement
+Ice
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Poison
+180
+180
+180
+180
+Judgement
+Poison
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Flying
+180
+180
+180
+180
+Judgement
+Flying
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Psychic
+180
+180
+180
+180
+Judgement
+Psychic
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Bug
+180
+180
+180
+180
+Judgement
+Bug
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Dark
+180
+180
+180
+180
+Judgement
+Dark
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Ghost
+180
+180
+180
+180
+Judgement
+Ghost
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Steel
+180
+180
+180
+180
+Judgement
+Steel
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Dragon
+180
+180
+180
+180
+Judgement
+Dragon
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Fairy
+180
+180
+180
+180
+Judgement
+Fairy
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
+
+493
+Arceus
+Poison
+180
+180
+180
+180
+Judgement
+Poison
+200
+100
+Spacial Rend 
+Dragon 
+100
+95
+Roar of Time
+Dragon
+150
+90
+Shadow Force
+Ghost
+120
+100
