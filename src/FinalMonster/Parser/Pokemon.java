@@ -1,6 +1,10 @@
 
 package FinalMonster.Parser;
 
+import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import java.util.Arrays;
 
 public class Pokemon {
@@ -13,6 +17,11 @@ public class Pokemon {
 	private int defense;
 	private int speed;
 	private Move moves[];
+
+	private Image frontImg;
+	private Image backImg;
+
+	private MediaPlayer cry;
 
 	public Pokemon(String id, String name, String type, int hp, int attack, int defense, int speed, Move[] moves) {
 		this.id = id;
@@ -88,6 +97,45 @@ public class Pokemon {
 
 	public void setMoves(Move[] moves) {
 		this.moves = moves;
+	}
+
+	private String imagePath(boolean back) {
+		if ( back )
+			if ( id.contains("_") )
+				return "/FinalMonster/resources/PokemonsAll/" + id.replace("_", "b_") + ".gif";
+			else
+				return "/FinalMonster/resources/PokemonsAll/" + id + "b.gif";
+		return "/FinalMonster/resources/PokemonsAll/" + id + ".gif";
+	}
+
+	public Image getFrontImg() {
+		if ( frontImg == null ) {
+			frontImg = new Image(getClass().getResource(imagePath(false)).toString());
+
+			if ( frontImg.getException() != null )
+				frontImg.getException().printStackTrace();
+		}
+
+		return frontImg;
+	}
+
+	public Image getBackImg() {
+		if ( backImg == null ) {
+			backImg = new Image(getClass().getResource(imagePath(true)).toString());
+
+			if ( backImg.getException() != null )
+				backImg.getException().printStackTrace();
+		}
+
+		return backImg;
+	}
+
+	private MediaPlayer getCry() {
+		if ( cry == null ) {
+			cry = new MediaPlayer(new Media(getClass().getResource("/FinalMonster/resources/PokemonsAll/" + id + "Cry.gif").toString()));
+		}
+
+		return cry;
 	}
 
 	@Override

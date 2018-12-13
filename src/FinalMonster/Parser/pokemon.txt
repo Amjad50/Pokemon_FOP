@@ -1750,7 +1750,7 @@ Steel
 90
 100
 
-151
+150
 Mewtwo
 Psychic
 106
@@ -2110,7 +2110,7 @@ Rock
 100
 80
 
-645
+643
 Reshiram
 Fire
 100
@@ -2158,7 +2158,7 @@ Ground
 90
 100
 
-646
+646_2
 Black Kyurem
 Dragon
 125
@@ -2182,7 +2182,7 @@ Electric
 100
 100
 
-646
+646_1
 White Kyurem
 Dragon
 125
