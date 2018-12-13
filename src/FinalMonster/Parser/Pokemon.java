@@ -99,7 +99,7 @@ public class Pokemon {
 		this.moves = moves;
 	}
 
-	private String imagePath(boolean back) {
+	public String imagePath(boolean back) {
 		if ( back )
 			if ( id.contains("_") )
 				return "/FinalMonster/resources/PokemonsAll/" + id.replace("_", "b_") + ".gif";

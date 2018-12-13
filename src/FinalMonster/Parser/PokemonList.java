@@ -42,7 +42,7 @@ public class PokemonList {
 
 	public static Pokemon[] Easy() {
 		if ( Easy == null ) {
-			Easy = new Pokemon[3];
+			Easy = new Pokemon[24];
 			for ( int i = 0; i < Easy.length; i++ ) {
 				Easy[i] = pokemons[r.nextInt(88)];
 				for ( int j = 0; j < i; j++ ) {
