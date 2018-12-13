@@ -3,6 +3,7 @@ package FinalMonster.Graphics.Components;
 
 import FinalMonster.Graphics.Constrains;
 import FinalMonster.Graphics.Storage.ImageDB;
+import FinalMonster.Parser.Parser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,8 @@ public class SelectionScene extends AnchorPane {
 	@FXML
 	private RadioButton player;
 
-	public ArrayList pokes = new ArrayList();
+	public ArrayList playerPokemons = new ArrayList();
+	public ArrayList opponentPokemons = new ArrayList();
 
 	public SelectionScene() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("selection_scene.fxml"));
@@ -47,15 +49,16 @@ public class SelectionScene extends AnchorPane {
 
 	@FXML
 	public void addPokemons(ActionEvent e) {
+            Parser p = new Parser();
             RadioButton pokemons = (RadioButton) e.getSource();
-		pokes.add(pokemons.getId());
-                System.out.println(pokemons.getId());
+            playerPokemons.add(p.getPokemon(pokemons.getId()));
+            opponentPokemons.add(p.getPokemon("random"));
 	}
         
         @FXML
         public void play(ActionEvent e) throws IOException{
         
-            root.getScene().setRoot(new BattleScene());
+            root.getScene().setRoot(new BattleScene("player", playerPokemons, "opponent", opponentPokemons));
             
         }
 
