@@ -13,6 +13,8 @@ import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import javafx.scene.control.Button;
 
 public class SelectionScene extends AnchorPane {
 
@@ -22,6 +24,9 @@ public class SelectionScene extends AnchorPane {
 	private RadioButton opponent;
 	@FXML
 	private RadioButton player;
+        @FXML
+        private Button play;
+        
 
 	public ArrayList playerPokemons = new ArrayList();
 	public ArrayList opponentPokemons = new ArrayList();
@@ -30,8 +35,9 @@ public class SelectionScene extends AnchorPane {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("selection_scene.fxml"));
 		loader.setRoot(this);
 		loader.setController(this);
-
 		loader.load();
+                play.setDisable(true);
+
 	}
 
 	@FXML
@@ -49,6 +55,16 @@ public class SelectionScene extends AnchorPane {
 
 	@FXML
 	public void addPokemons(ActionEvent e) {
+            if(playerPokemons.size() > 1 && playerPokemons.size() < 3){
+                play.setDisable(false);
+            }
+            else{
+                play.setDisable(true);
+            }
+            RadioButton poke = (RadioButton) e.getSource();
+            if(!poke.isSelected()){
+                System.out.println(Arrays.toString(playerPokemons.toArray()));
+            }
             Parser p = new Parser();
             RadioButton pokemons = (RadioButton) e.getSource();
             playerPokemons.add(p.getPokemon(pokemons.getId()));
@@ -57,7 +73,7 @@ public class SelectionScene extends AnchorPane {
         
         @FXML
         public void play(ActionEvent e) throws IOException{
-        
+            System.out.println(Arrays.toString(playerPokemons.toArray()));
             root.getScene().setRoot(new BattleScene("player", playerPokemons, "opponent", opponentPokemons));
             
         }
