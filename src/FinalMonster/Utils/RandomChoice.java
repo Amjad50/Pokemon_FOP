@@ -13,7 +13,7 @@ public class RandomChoice {
 
 		Pokemon[] result = new Pokemon[length];
 		for ( int i = 0; i < length; i++ ) {
-			result[i] = src[r.nextInt(length)];
+			result[i] = src[r.nextInt(src.length)];
 			for ( int j = 0; j < i; j++ ) {
 				if ( result[j].equals(result[i]) ) {
 					i--;
