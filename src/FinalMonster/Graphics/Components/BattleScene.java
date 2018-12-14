@@ -201,20 +201,20 @@ public class BattleScene extends StackPane {
 						if ( opponentCurrent.getHp() == 0 ) {
 							switchPokemon(Who.OPPONENT, SwitchPokemon.SwitchMode.DIED, 0, result2 -> {
 								if ( result2 ) {
-									showControls();
+									speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
 								} else {
 									win(Who.PLAYER);
 								}
 							});
 						} else {
-							showControls();
+							speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
 						}
 					} else {
 						win(Who.OPPONENT);
 					}
 				});
 			} else {
-				showControls();
+				speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
 			}
 		}
 	}
