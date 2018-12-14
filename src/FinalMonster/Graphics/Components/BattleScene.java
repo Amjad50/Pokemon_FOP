@@ -165,24 +165,28 @@ public class BattleScene extends StackPane {
 	}
 
 	private void runBattle() {
+		status_opponent.setAccumulator(opponentAcc / 100.0);
+		status_player.setAccumulator(playerAcc / 100.0);
 		if ( attackDefenceQueue.poll().who == Who.OPPONENT ) {
 			if ( opponentCurrent.getHp() == 0 ) {
 				switchPokemon(Who.OPPONENT, SwitchPokemon.SwitchMode.DIED, 0, result -> {
 					if ( result ) {
-						opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
-						speak(String.format("The foe's %s used %s", opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
-							attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, () -> {
-								if ( playerCurrent.getHp() == 0 ) {
-									switchPokemon(Who.PLAYER, SwitchPokemon.SwitchMode.DIED, 0, result2 -> {
-										if ( !result2 ) {
-											win(Who.OPPONENT);
-										} else {
-											loop();
-										}
-									});
-								} else {
-									loop();
-								}
+						status_opponent.reFillAccumulator(() -> {
+							opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
+							speak(String.format("The foe's %s used %s", opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
+								attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, () -> {
+									if ( playerCurrent.getHp() == 0 ) {
+										switchPokemon(Who.PLAYER, SwitchPokemon.SwitchMode.DIED, 0, result2 -> {
+											if ( !result2 ) {
+												win(Who.OPPONENT);
+											} else {
+												status_player.setAccumulator(playerAcc, this::loop);
+											}
+										});
+									} else {
+										status_player.setAccumulator(playerAcc, this::loop);
+									}
+								});
 							});
 						});
 					} else {
@@ -190,9 +194,13 @@ public class BattleScene extends StackPane {
 					}
 				});
 			} else {
-				opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
-				speak(String.format("The foe's %s used %s", opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
-					attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, this::loop);
+				status_opponent.reFillAccumulator(() -> {
+					opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
+					speak(String.format("The foe's %s used %s", opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
+						attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, () -> {
+							status_player.setAccumulator(playerAcc, this::loop);
+						});
+					});
 				});
 			}
 
@@ -204,20 +212,31 @@ public class BattleScene extends StackPane {
 						if ( opponentCurrent.getHp() == 0 ) {
 							switchPokemon(Who.OPPONENT, SwitchPokemon.SwitchMode.DIED, 0, result2 -> {
 								if ( result2 ) {
-									speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
+									status_player.setAccumulator(1.0, () -> {
+										speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
+									});
 								} else {
 									win(Who.PLAYER);
 								}
 							});
 						} else {
-							speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
+							status_opponent.setAccumulator(opponentAcc, () -> {
+								status_player.setAccumulator(1.0, () -> {
+									speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
+								});
+							});
 						}
 					} else {
 						win(Who.OPPONENT);
 					}
 				});
 			} else {
-				speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
+				System.out.println(opponentAcc);
+				status_opponent.setAccumulator(opponentAcc, () -> {
+					status_player.setAccumulator(1.0, () -> {
+						speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
+					});
+				});
 			}
 		}
 	}
@@ -229,20 +248,20 @@ public class BattleScene extends StackPane {
 		opponentAcc += opponentSpeed;
 
 		if ( playerSpeed > opponentSpeed ) {
-			while ( playerAcc > 100 ) {
+			while ( playerAcc >= 100 ) {
 				playerAcc -= 100;
 				attackDefenceQueue.add(new AttackDefenceRequest(Who.PLAYER));
 			}
-			while ( opponentAcc > 100 ) {
+			while ( opponentAcc >= 100 ) {
 				opponentAcc -= 100;
 				attackDefenceQueue.add(new AttackDefenceRequest(Who.OPPONENT));
 			}
 		} else {
-			while ( opponentAcc > 100 ) {
+			while ( opponentAcc >= 100 ) {
 				opponentAcc -= 100;
 				attackDefenceQueue.add(new AttackDefenceRequest(Who.OPPONENT));
 			}
-			while ( playerAcc > 100 ) {
+			while ( playerAcc >= 100 ) {
 				playerAcc -= 100;
 				attackDefenceQueue.add(new AttackDefenceRequest(Who.PLAYER));
 			}
