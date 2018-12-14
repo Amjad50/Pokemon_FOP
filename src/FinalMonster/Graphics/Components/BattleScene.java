@@ -21,6 +21,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import static java.util.stream.Collectors.toList;
+
 public class BattleScene extends StackPane {
 
 	public enum Who {
@@ -78,9 +80,9 @@ public class BattleScene extends StackPane {
 
 	public BattleScene(String playername, ArrayList<Pokemon> playerpokemons, String opponentname, ArrayList<Pokemon> opponentpokemons) throws IOException {
 		playerName = playername;
-		playerPokemons = playerpokemons;
+		playerPokemons = (ArrayList<Pokemon>) playerpokemons.stream().map(Pokemon::clone).collect(toList());
 		opponentName = opponentname;
-		opponentPokemons = opponentpokemons;
+		opponentPokemons = (ArrayList<Pokemon>) opponentpokemons.stream().map(Pokemon::clone).collect(toList()); ;
 		System.out.println(playerPokemons);
 		System.out.println(opponentPokemons);
 
