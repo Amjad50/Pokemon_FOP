@@ -5,9 +5,11 @@ import FinalMonster.Graphics.Storage.ImageDB;
 import FinalMonster.Graphics.Utils;
 import FinalMonster.Parser.Move;
 import FinalMonster.Parser.Pokemon;
+import FinalMonster.Player;
 import FinalMonster.Utils.BattleLogic;
 import FinalMonster.Utils.Callback;
 import FinalMonster.Utils.SwitchPokemon;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -35,6 +37,8 @@ public class BattleScene extends StackPane {
 			OPPONENT_Y_BOTTOM = 350,
 			PLAYER_X_CENTER = 250,
 			PLAYER_Y_CENTER = 400;
+
+	public static final int EXP_ON_WIN = 10;
 
 	private final double MARGIN_SIZE = 20,
 			STATUS_WIDTH = 300,
@@ -64,12 +68,14 @@ public class BattleScene extends StackPane {
 	@FXML
 	private ColorAdjust opponentColorAdjust;
 
-	private String playerName;
+	private Player playerPlayer;
 	private ArrayList<Pokemon> playerPokemons;
 	private Pokemon playerCurrent;
-	private String opponentName;
+	private Player opponentPlayer;
 	private ArrayList<Pokemon> opponentPokemons;
 	private Pokemon opponentCurrent;
+
+	private ArrayList<Pokemon> toWinPokemons;
 
 	private int playerAcc;
 	private int opponentAcc;
@@ -79,11 +85,13 @@ public class BattleScene extends StackPane {
 	private Queue<AttackDefenceRequest> attackDefenceQueue;
 
 
-	public BattleScene(String playername, ArrayList<Pokemon> playerpokemons, String opponentname, ArrayList<Pokemon> opponentpokemons) throws IOException {
-		playerName = playername;
-		playerPokemons = (ArrayList<Pokemon>) playerpokemons.stream().map(Pokemon::clone).collect(toList());
-		opponentName = opponentname;
-		opponentPokemons = (ArrayList<Pokemon>) opponentpokemons.stream().map(Pokemon::clone).collect(toList()); ;
+	public BattleScene(Player playerPlayer, ArrayList<Pokemon> playerpokemons, Player opponentPlayer, ArrayList<Pokemon> opponentpokemons, boolean isWild) throws IOException {
+		this.playerPlayer = playerPlayer;
+		this.playerPokemons = (ArrayList<Pokemon>) playerpokemons.stream().map(Pokemon::clone).collect(toList());
+		this.opponentPlayer = opponentPlayer;
+		this.opponentPokemons = (ArrayList<Pokemon>) opponentpokemons.stream().map(Pokemon::clone).collect(toList());
+		if ( isWild )
+			toWinPokemons = opponentPokemons;
 		System.out.println(playerPokemons);
 		System.out.println(opponentPokemons);
 
@@ -104,12 +112,8 @@ public class BattleScene extends StackPane {
 	}
 
 
-	public BattleScene(String playername, Pokemon[] playerpokemons, String opponentname, Pokemon[] opponentpokemons) throws IOException {
-		this(playername, new ArrayList<>(Arrays.asList(playerpokemons)), opponentname, new ArrayList<>(Arrays.asList(opponentpokemons)));
-	}
-
-	public BattleScene() throws IOException {
-		this("", new ArrayList<>(), "", new ArrayList<>());
+	public BattleScene(Player playerPlayer, Pokemon[] playerpokemons, Player opponentPlayer, Pokemon[] opponentpokemons, boolean isWild) throws IOException {
+		this(playerPlayer, new ArrayList<>(Arrays.asList(playerpokemons)), opponentPlayer, new ArrayList<>(Arrays.asList(opponentpokemons)), isWild);
 	}
 
 	@FXML
@@ -173,7 +177,7 @@ public class BattleScene extends StackPane {
 					if ( result ) {
 						status_opponent.reFillAccumulator(() -> {
 							opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
-							speak(String.format("The foe's %s used %s", opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
+							speak(String.format("%s's %s used %s", opponentPlayer.getName(), opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
 								attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, () -> {
 									if ( playerCurrent.getHp() == 0 ) {
 										switchPokemon(Who.PLAYER, SwitchPokemon.SwitchMode.DIED, 0, result2 -> {
@@ -196,7 +200,7 @@ public class BattleScene extends StackPane {
 			} else {
 				status_opponent.reFillAccumulator(() -> {
 					opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
-					speak(String.format("The foe's %s used %s", opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
+					speak(String.format("%s's %s used %s", opponentPlayer.getName(), opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
 						attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, () -> {
 							status_player.setAccumulator(playerAcc, this::loop);
 						});
@@ -269,8 +273,30 @@ public class BattleScene extends StackPane {
 
 	}
 
-	private void win(Who player) {
-		System.out.println("winnnnnn");
+	private void win(Who who) {
+		if ( who == Who.PLAYER ) {
+			String s;
+			if ( toWinPokemons != null ) {
+				s = String.format("and a set of %d pokemons, %s", toWinPokemons.size(), toWinPokemons.stream().map(Pokemon::getName));
+			} else {
+				s = "";
+			}
+			speak(String.format("%s defated %s", playerPlayer.getName(), opponentPlayer.getName()), () -> {
+				speak(String.format("%s got %d xp for winning %s", playerPlayer.getName(), EXP_ON_WIN, s), () -> {
+					if ( !s.isEmpty() ) {
+						playerPlayer.getPokemons().addAll(toWinPokemons);
+					}
+					playerPlayer.addExp(EXP_ON_WIN);
+					exitBattle(false);
+				});
+			});
+		} else {
+			speak(String.format("%s defated %s", opponentPlayer.getName(), playerPlayer.getName()), () -> {
+				speak(String.format("%s lost and got nothing", playerPlayer.getName()), () -> {
+					exitBattle(false);
+				});
+			});
+		}
 	}
 
 	private void switchPokemon(Who who, SwitchPokemon.SwitchMode mode, Pokemon pokemon, Callback.WithArg<Boolean> callable) {
@@ -303,7 +329,7 @@ public class BattleScene extends StackPane {
 						});
 					});
 				} else {
-					speak(String.format("%s's %s has fainted!", opponentName, opponentCurrent.getName()), () -> {
+					speak(String.format("%s's %s has fainted!", opponentPlayer.getName(), opponentCurrent.getName()), () -> {
 						opponentPokemons.remove(opponentCurrent);
 						unsummonOpponent(() -> {
 							if ( opponentPokemons.isEmpty() ) {
@@ -406,6 +432,11 @@ public class BattleScene extends StackPane {
 
 	private void run() {
 		//todo: implement this after map(exit from this scene)
+		speak(String.format("%s is trying to escape", playerPlayer.getName()), () -> exitBattle(true));
+	}
+
+	private void exitBattle(boolean keep) {
+		Platform.exit();
 	}
 
 	private void fight() {
