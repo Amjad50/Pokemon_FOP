@@ -3,7 +3,7 @@ package FinalMonster.Parser;
 
 import java.util.Arrays;
 
-public class Pokemon {
+public class Pokemon implements Cloneable {
 	private String id;
 	private String name;
 	private String type;
@@ -103,5 +103,15 @@ public class Pokemon {
 				", speed=" + speed +
 				", moves=" + Arrays.toString(moves) +
 				'}';
+	}
+
+	@Override
+	public Pokemon clone() {
+		try {
+			return (Pokemon) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
