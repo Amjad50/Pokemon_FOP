@@ -22,10 +22,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
-public class SelectionScene extends AnchorPane {
+public class SelectionScene extends BorderPane {
 
     @FXML
-    private AnchorPane root;
+    private BorderPane root;
     @FXML
     private RadioButton opponent;
     @FXML
@@ -54,12 +54,13 @@ public class SelectionScene extends AnchorPane {
         pok = new Node[p.length];
         for (int i = 0; i < p.length; i++) {
             RadioButton r = new RadioButton();
+//            r.setOpacity(0);
             r.setId(p[i].getName());
             r.setOnAction(event -> {
                 addPokemons(event);
             });
             String url = p[i].imagePath(false);
-            r.setStyle("-fx-margin: auto; -fx-min-width: 80px; -fx-min-height: 80px; -fx-background-image: url(" + url + "); -fx-background-repeat: stretch; -fx-background-size: contain; -fx-background-position: center center;");
+            r.setStyle("-fx-visibility: hidden; -fx-margin: auto; -fx-min-width: 80px; -fx-min-height: 80px; -fx-background-image: url(" + url + "); -fx-background-repeat: stretch; -fx-background-size: contain; -fx-background-position: center center;");
             pok[i] = r;
             System.out.println(pok[i]);
 

@@ -25,11 +25,17 @@
     -fx-transition: all;
 }
 
-#pikachu{
-    -fx-background-image: url(../resources/pikachu.png);
+.radio-button{
     -fx-background-repeat: stretch;
     -fx-background-size: contain;
     -fx-background-position: center center;
+}
+.radio-button:checked, .radio-button:hover, .radio-button:active{
+    
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: white;
+        
 }
 #charmander{
     -fx-background-image: url(../resources/charmander.png);
@@ -42,6 +48,7 @@
     -fx-background-repeat: stretch;
     -fx-background-size: contain;
     -fx-background-position: center center;
+
 }
 #bulbasaur{
     -fx-background-image: url(../resources/Bulbasaur.png);
