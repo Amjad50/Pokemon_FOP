@@ -2,6 +2,7 @@ package FinalMonster.Graphics.Components;
 
 import FinalMonster.Graphics.Constrains;
 import FinalMonster.Graphics.Storage.ImageDB;
+import FinalMonster.Graphics.Utils;
 import FinalMonster.Parser.Move;
 import FinalMonster.Parser.Pokemon;
 import FinalMonster.Utils.BattleLogic;
@@ -424,6 +425,20 @@ public class BattleScene extends StackPane {
 
 	private void attack(AttackDefence attackDefence, Who attacking, Callback callable) {
 		BattleLogic.AttackResult result = BattleLogic.attack(attackDefence.defendingPokemon, attackDefence.attackingPower, attackDefence.attackingMove);
+
+		ImageView attimg, defimg;
+
+		if ( attacking == Who.PLAYER ) {
+			attimg = player_image;
+			defimg = opponent_image;
+		} else {
+			attimg = opponent_image;
+			defimg = player_image;
+		}
+		if ( result.getStatus() != BattleLogic.AttackStatus.MISS )
+			Utils.attackEffect(defimg, attimg, attacking, () -> {
+			});
+
 		if ( attacking == Who.PLAYER ) {
 			Callback myCallable = () -> {
 				opponentCurrent.setHp(result.getNewHP());
