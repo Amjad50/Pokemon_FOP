@@ -62,21 +62,6 @@ public class BottomBar extends HBox {
 		return true;
 	}
 
-	public boolean setText(String string) {
-		return setText(string, () -> {
-		});
-	}
-
-	public void setTextForce(String string) {
-		if ( !setText(string) )
-			setText(string);
-	}
-
-	public void setTextForce(String string, Callback callable) {
-		if ( !setText(string, callable) )
-			setText(string, callable);
-	}
-
 	public void setMoves(MoveHandler[] moves_) {
 		assert moves_.length == moves.size();
 		for ( int i = 0; i < moves_.length; i++ ) {

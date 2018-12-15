@@ -2,16 +2,20 @@ package FinalMonster.Graphics.Components;
 
 import FinalMonster.Graphics.Constrains;
 import FinalMonster.Graphics.Storage.ImageDB;
+import FinalMonster.Graphics.Utils;
 import FinalMonster.Parser.Move;
 import FinalMonster.Parser.Pokemon;
+import FinalMonster.Player;
 import FinalMonster.Utils.BattleLogic;
 import FinalMonster.Utils.Callback;
-import FinalMonster.Utils.SwitchMode;
+import FinalMonster.Utils.SwitchPokemon;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
@@ -20,17 +24,24 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import static FinalMonster.Utils.BattleLogic.getOpponentMove;
+import static java.util.stream.Collectors.toList;
 
 public class BattleScene extends StackPane {
 
-	private enum Who {
+	public enum Who {
 		PLAYER,
 		OPPONENT
 	}
 
+	public static final int OPPONENT_X_BOTTOM = 500,
+			OPPONENT_Y_BOTTOM = 350,
+			PLAYER_X_CENTER = 250,
+			PLAYER_Y_CENTER = 400;
+
+	public static final int EXP_ON_WIN = 10;
+
 	private final double MARGIN_SIZE = 20,
-			STATUS_WIDTH = 250,
+			STATUS_WIDTH = 300,
 			STATUS_HEIGHT = 50,
 			BOTTOM_HEIGHT = 100;
 	@FXML
@@ -48,29 +59,41 @@ public class BattleScene extends StackPane {
 	@FXML
 	private BottomBar bottomBar;
 
-	private String playerName;
+	@FXML
+	private ImageView player_image;
+	@FXML
+	private ColorAdjust playerColorAdjust;
+	@FXML
+	private ImageView opponent_image;
+	@FXML
+	private ColorAdjust opponentColorAdjust;
+
+	private Player playerPlayer;
 	private ArrayList<Pokemon> playerPokemons;
 	private Pokemon playerCurrent;
-	private String opponentName;
+	private Player opponentPlayer;
 	private ArrayList<Pokemon> opponentPokemons;
 	private Pokemon opponentCurrent;
+
+	private ArrayList<Pokemon> toWinPokemons;
 
 	private int playerAcc;
 	private int opponentAcc;
 
 	private Move opponentHoldMove;
 
-	private Who playing;
-
-	private Queue<String> sentences;
 	private Queue<AttackDefenceRequest> attackDefenceQueue;
 
 
-	public BattleScene(String playername, ArrayList<Pokemon> playerpokemons, String opponentname, ArrayList<Pokemon> opponentpokemons) throws IOException {
-		playerName = playername;
-		playerPokemons = playerpokemons;
-		opponentName = opponentname;
-		opponentPokemons = opponentpokemons;
+	public BattleScene(Player playerPlayer, ArrayList<Pokemon> playerpokemons, Player opponentPlayer, ArrayList<Pokemon> opponentpokemons, boolean isWild) throws IOException {
+		this.playerPlayer = playerPlayer;
+		this.playerPokemons = (ArrayList<Pokemon>) playerpokemons.stream().map(Pokemon::clone).collect(toList());
+		this.opponentPlayer = opponentPlayer;
+		this.opponentPokemons = (ArrayList<Pokemon>) opponentpokemons.stream().map(Pokemon::clone).collect(toList());
+		if ( isWild )
+			toWinPokemons = opponentPokemons;
+		System.out.println(playerPokemons);
+		System.out.println(opponentPokemons);
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("battle_scene.fxml"));
 		loader.setRoot(this);
@@ -78,24 +101,19 @@ public class BattleScene extends StackPane {
 
 		loader.load();
 
-		sentences = new LinkedList<>();
 		attackDefenceQueue = new LinkedList<>();
 
 		initHandler();
-		switchPokemon(Who.PLAYER, SwitchMode.START, 0, r -> {
+		switchPokemon(Who.PLAYER, SwitchPokemon.SwitchMode.START, 0, r -> {
+			switchPokemon(Who.OPPONENT, SwitchPokemon.SwitchMode.START, 0, r2 -> {
+				loop();
+			});
 		});
-		switchPokemon(Who.OPPONENT, SwitchMode.START, 0, r -> {
-		});
-		loop();
 	}
 
 
-	public BattleScene(String playername, Pokemon[] playerpokemons, String opponentname, Pokemon[] opponentpokemons) throws IOException {
-		this(playername, new ArrayList<>(Arrays.asList(playerpokemons)), opponentname, new ArrayList<>(Arrays.asList(opponentpokemons)));
-	}
-
-	public BattleScene() throws IOException {
-		this("", new ArrayList<>(), "", new ArrayList<>());
+	public BattleScene(Player playerPlayer, Pokemon[] playerpokemons, Player opponentPlayer, Pokemon[] opponentpokemons, boolean isWild) throws IOException {
+		this(playerPlayer, new ArrayList<>(Arrays.asList(playerpokemons)), opponentPlayer, new ArrayList<>(Arrays.asList(opponentpokemons)), isWild);
 	}
 
 	@FXML
@@ -104,7 +122,7 @@ public class BattleScene extends StackPane {
 //		status_player.layout();
 		this.layout();
 		double status_playerY = Constrains.ROOT_HEIGHT - MARGIN_SIZE - STATUS_HEIGHT - BOTTOM_HEIGHT - 20,
-				status_playerX = Constrains.ROOT_WIDTH - MARGIN_SIZE - status_player.getWidth() - 20,
+				status_playerX = Constrains.ROOT_WIDTH - MARGIN_SIZE - STATUS_WIDTH,
 				status_opponentY = MARGIN_SIZE,
 				status_opponentX = MARGIN_SIZE;
 
@@ -151,59 +169,78 @@ public class BattleScene extends StackPane {
 	}
 
 	private void runBattle() {
+		status_opponent.setAccumulator(opponentAcc / 100.0);
+		status_player.setAccumulator(playerAcc / 100.0);
 		if ( attackDefenceQueue.poll().who == Who.OPPONENT ) {
 			if ( opponentCurrent.getHp() == 0 ) {
-				switchPokemon(Who.OPPONENT, SwitchMode.DIED, 0, result -> {
+				switchPokemon(Who.OPPONENT, SwitchPokemon.SwitchMode.DIED, 0, result -> {
 					if ( result ) {
-						if ( playerCurrent.getHp() == 0 ) {
-							switchPokemon(Who.PLAYER, SwitchMode.DIED, 0, result2 -> {
-								if ( result2 ) {
-									opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
-									speak(String.format("The foe's %s used %s", opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
-										attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, this::loop);
-									});
-								} else {
-									win(Who.OPPONENT);
-								}
-							});
-						} else {
+						status_opponent.reFillAccumulator(() -> {
 							opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
-							speak(String.format("The foe's %s used %s", opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
-								attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, this::loop);
+							speak(String.format("%s's %s used %s", opponentPlayer.getName(), opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
+								attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, () -> {
+									if ( playerCurrent.getHp() == 0 ) {
+										switchPokemon(Who.PLAYER, SwitchPokemon.SwitchMode.DIED, 0, result2 -> {
+											if ( !result2 ) {
+												win(Who.OPPONENT);
+											} else {
+												status_player.setAccumulator(playerAcc, this::loop);
+											}
+										});
+									} else {
+										status_player.setAccumulator(playerAcc, this::loop);
+									}
+								});
 							});
-						}
+						});
 					} else {
 						win(Who.PLAYER);
 					}
 				});
 			} else {
-				opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
-				speak(String.format("The foe's %s used %s", opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
-					attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, this::loop);
+				status_opponent.reFillAccumulator(() -> {
+					opponentHoldMove = BattleLogic.getOpponentMove(opponentCurrent);
+					speak(String.format("%s's %s used %s", opponentPlayer.getName(), opponentCurrent.getName(), opponentHoldMove.getName()), () -> {
+						attack(new AttackDefence(opponentHoldMove, opponentCurrent.getAttack(), playerCurrent), Who.OPPONENT, () -> {
+							status_player.setAccumulator(playerAcc, this::loop);
+						});
+					});
 				});
 			}
 
+
 		} else {
 			if ( playerCurrent.getHp() == 0 ) {
-				switchPokemon(Who.PLAYER, SwitchMode.DIED, 0, result -> {
+				switchPokemon(Who.PLAYER, SwitchPokemon.SwitchMode.DIED, 0, result -> {
 					if ( result ) {
 						if ( opponentCurrent.getHp() == 0 ) {
-							switchPokemon(Who.OPPONENT, SwitchMode.DIED, 0, result2 -> {
+							switchPokemon(Who.OPPONENT, SwitchPokemon.SwitchMode.DIED, 0, result2 -> {
 								if ( result2 ) {
-									showControls();
+									status_player.setAccumulator(1.0, () -> {
+										speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
+									});
 								} else {
 									win(Who.PLAYER);
 								}
 							});
 						} else {
-							showControls();
+							status_opponent.setAccumulator(opponentAcc, () -> {
+								status_player.setAccumulator(1.0, () -> {
+									speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
+								});
+							});
 						}
 					} else {
 						win(Who.OPPONENT);
 					}
 				});
 			} else {
-				showControls();
+				System.out.println(opponentAcc);
+				status_opponent.setAccumulator(opponentAcc, () -> {
+					status_player.setAccumulator(1.0, () -> {
+						speak(String.format("What will %s do?", playerCurrent.getName()), this::showControls);
+					});
+				});
 			}
 		}
 	}
@@ -215,20 +252,20 @@ public class BattleScene extends StackPane {
 		opponentAcc += opponentSpeed;
 
 		if ( playerSpeed > opponentSpeed ) {
-			while ( playerAcc > 100 ) {
+			while ( playerAcc >= 100 ) {
 				playerAcc -= 100;
 				attackDefenceQueue.add(new AttackDefenceRequest(Who.PLAYER));
 			}
-			while ( opponentAcc > 100 ) {
+			while ( opponentAcc >= 100 ) {
 				opponentAcc -= 100;
 				attackDefenceQueue.add(new AttackDefenceRequest(Who.OPPONENT));
 			}
 		} else {
-			while ( opponentAcc > 100 ) {
+			while ( opponentAcc >= 100 ) {
 				opponentAcc -= 100;
 				attackDefenceQueue.add(new AttackDefenceRequest(Who.OPPONENT));
 			}
-			while ( playerAcc > 100 ) {
+			while ( playerAcc >= 100 ) {
 				playerAcc -= 100;
 				attackDefenceQueue.add(new AttackDefenceRequest(Who.PLAYER));
 			}
@@ -236,106 +273,170 @@ public class BattleScene extends StackPane {
 
 	}
 
-	private void win(Who player) {
-		System.out.println("winnnnnn");
+	private void win(Who who) {
+		if ( who == Who.PLAYER ) {
+			String s;
+			if ( toWinPokemons != null ) {
+				s = String.format("and a set of %d pokemons, %s", toWinPokemons.size(), toWinPokemons.stream().map(Pokemon::getName));
+			} else {
+				s = "";
+			}
+			speak(String.format("%s defated %s", playerPlayer.getName(), opponentPlayer.getName()), () -> {
+				speak(String.format("%s got %d xp for winning %s", playerPlayer.getName(), EXP_ON_WIN, s), () -> {
+					if ( !s.isEmpty() ) {
+						playerPlayer.getPokemons().addAll(toWinPokemons);
+					}
+					playerPlayer.addExp(EXP_ON_WIN);
+					exitBattle(false);
+				});
+			});
+		} else {
+			speak(String.format("%s defated %s", opponentPlayer.getName(), playerPlayer.getName()), () -> {
+				speak(String.format("%s lost and got nothing", playerPlayer.getName()), () -> {
+					exitBattle(false);
+				});
+			});
+		}
 	}
 
-	private void switchPokemon(Who who, SwitchMode mode, int i, Callback.WithArg<Boolean> callable) {
+	private void switchPokemon(Who who, SwitchPokemon.SwitchMode mode, Pokemon pokemon, Callback.WithArg<Boolean> callable) {
 		switch ( mode ) {
-			case NEXT:
-				break;
 			case SET:
 				if ( who == Who.PLAYER ) {
-					unsummonPlayer();
-					if ( i < playerPokemons.size() ) {
-						playerCurrent = playerPokemons.get(i);
-						summonPlayer();
-						callable.call(true);
-					} else {
-						callable.call(false);
-					}
+					unsummonPlayer(() -> {
+						playerCurrent = pokemon;
+						summonPlayer(() -> callable.call(true));
+					});
 				} else {
-					unsummonOpponent();
-					if ( i < opponentPokemons.size() ) {
-						opponentCurrent = opponentPokemons.get(i);
-						summonOpponent();
-						callable.call(true);
-					} else {
-						callable.call(false);
-					}
+					unsummonOpponent(() -> {
+						opponentCurrent = pokemon;
+						summonOpponent(() -> callable.call(true));
+
+					});
 				}
 				break;
 			case DIED:
 				if ( who == Who.PLAYER ) {
 					speak(String.format("%s has fainted!", playerCurrent.getName()), () -> {
 						playerPokemons.remove(playerCurrent);
-						unsummonPlayer();
-						if ( playerPokemons.isEmpty() ) {
-							callable.call(false);
-						} else {
-							playerCurrent = playerPokemons.get(0);
-							summonPlayer();
-							callable.call(true);
-						}
-
+						unsummonPlayer(() -> {
+							if ( playerPokemons.isEmpty() ) {
+								callable.call(false);
+							} else {
+								playerCurrent = playerPokemons.get(0);
+								summonPlayer(() -> callable.call(true));
+							}
+						});
 					});
 				} else {
-					speak(String.format("%s's %s has fainted!", opponentName, opponentCurrent.getName()), () -> {
+					speak(String.format("%s's %s has fainted!", opponentPlayer.getName(), opponentCurrent.getName()), () -> {
 						opponentPokemons.remove(opponentCurrent);
-						unsummonOpponent();
-						if ( opponentPokemons.isEmpty() ) {
-							callable.call(false);
-						} else {
-							opponentCurrent = opponentPokemons.get(0);
-							summonOpponent();
-							callable.call(true);
-						}
-
+						unsummonOpponent(() -> {
+							if ( opponentPokemons.isEmpty() ) {
+								callable.call(false);
+							} else {
+								opponentCurrent = opponentPokemons.get(0);
+								summonOpponent(() -> callable.call(true));
+							}
+						});
 					});
 				}
 				break;
 			case START:
 				if ( who == Who.PLAYER ) {
 					playerCurrent = playerPokemons.get(0);
-					summonPlayer();
+					summonPlayer(() -> callable.call(true));
 				} else {
 					opponentCurrent = opponentPokemons.get(0);
-					summonOpponent();
+					summonOpponent(() -> callable.call(true));
 				}
 				break;
+			default:
+				throw new IllegalArgumentException(mode + " is not a valid type in BattleScene::switchPokemon");
 		}
 	}
 
-	private void unsummonOpponent() {
+	private void switchPokemon(Who who, SwitchPokemon.SwitchMode mode, int i, Callback.WithArg<Boolean> callable) {
+		if ( who == Who.PLAYER ) {
+			if ( i < playerPokemons.size() ) {
+				switchPokemon(who, mode, playerPokemons.get(i), callable);
+			} else {
+				callable.call(false);
+			}
+		} else {
+			if ( i < opponentPokemons.size() ) {
+				switchPokemon(who, mode, opponentPokemons.get(i), callable);
+			} else {
+				callable.call(false);
+			}
+		}
+	}
+
+	private void unsummonOpponent(Callback callable) {
 		System.out.println("unsummonOpponent");
+		SwitchPokemon.animateSwitch(opponent_image, opponentColorAdjust, opponentCurrent.getFrontImg(), Who.OPPONENT, SwitchPokemon.SwitchMode.EXIT, callable);
 	}
 
-	private void unsummonPlayer() {
+	private void unsummonPlayer(Callback callable) {
 		System.out.println("unsummonPlayer");
+		SwitchPokemon.animateSwitch(player_image, playerColorAdjust, playerCurrent.getBackImg(), Who.PLAYER, SwitchPokemon.SwitchMode.EXIT, callable);
 	}
 
-	private void summonOpponent() {
+	private void summonOpponent(Callback callable) {
 		System.out.println("summonOpponent");
 		status_opponent.setFull_hp(opponentCurrent.getFullHp());
 		status_opponent.setHealth(opponentCurrent.getHp());
 		status_opponent.setVisible(true);
 		status_opponent.setName(opponentCurrent.getName());
+		SwitchPokemon.animateSwitch(opponent_image, opponentColorAdjust, opponentCurrent.getFrontImg(), Who.OPPONENT, SwitchPokemon.SwitchMode.ENTER, callable);
 	}
 
-	private void summonPlayer() {
+	private void summonPlayer(Callback callable) {
 		System.out.println("summonPlayer");
 		status_player.setFull_hp(playerCurrent.getFullHp());
 		status_player.setHealth(playerCurrent.getHp());
 		status_player.setVisible(true);
 		status_player.setName(playerCurrent.getName());
+		SwitchPokemon.animateSwitch(player_image, playerColorAdjust, playerCurrent.getBackImg(), Who.PLAYER, SwitchPokemon.SwitchMode.ENTER, callable);
 	}
 
 	private void changePokemon() {
-		//todo ; implement this
+		BottomBar.MoveHandler[] handlers = new BottomBar.MoveHandler[4];
+
+		for ( int i = 0; i < playerPokemons.size(); i++ ) {
+			Pokemon p = playerPokemons.get(i);
+			handlers[i] = new BottomBar.MoveHandler(p.getName(), () -> {
+				this.bottomBar.setMovesVisibile(false);
+				switchPokemon(Who.PLAYER, SwitchPokemon.SwitchMode.SET, p, result -> {
+					if ( result ) {
+						loop();
+					} else {
+						System.out.println("Error");
+					}
+				});
+				( (LinkedList<AttackDefenceRequest>) attackDefenceQueue ).add(0, new AttackDefenceRequest(Who.PLAYER));
+			});
+		}
+
+
+		for ( int i = playerPokemons.size(); i < 4; i++ ) {
+			handlers[i] = new BottomBar.MoveHandler("", () -> {
+			});
+		}
+
+
+		this.bottomBar.setMoves(handlers);
+		this.bottomBar.setMovesVisibile(true);
+		hideControls();
 	}
 
 	private void run() {
 		//todo: implement this after map(exit from this scene)
+		speak(String.format("%s is trying to escape", playerPlayer.getName()), () -> exitBattle(true));
+	}
+
+	private void exitBattle(boolean keep) {
+		Platform.exit();
 	}
 
 	private void fight() {
@@ -362,8 +463,7 @@ public class BattleScene extends StackPane {
 
 	private void playerAttack(AttackDefence attackDefence, Callback callable) {
 		speak(String.format("%s used %s", playerCurrent.getName(), attackDefence.attackingMove.getName()), () -> {
-			attack(attackDefence, Who.PLAYER);
-			callable.call();
+			attack(attackDefence, Who.PLAYER, callable);
 		});
 
 	}
@@ -375,22 +475,42 @@ public class BattleScene extends StackPane {
 
 	private void attack(AttackDefence attackDefence, Who attacking, Callback callable) {
 		BattleLogic.AttackResult result = BattleLogic.attack(attackDefence.defendingPokemon, attackDefence.attackingPower, attackDefence.attackingMove);
+
+		ImageView attimg, defimg;
+
 		if ( attacking == Who.PLAYER ) {
+			attimg = player_image;
+			defimg = opponent_image;
+		} else {
+			attimg = opponent_image;
+			defimg = player_image;
+		}
+		if ( result.getStatus() != BattleLogic.AttackStatus.MISS )
+			Utils.attackEffect(defimg, attimg, attacking, () -> {
+			});
+
+		if ( attacking == Who.PLAYER ) {
+			Callback myCallable = () -> {
+				opponentCurrent.setHp(result.getNewHP());
+				status_opponent.setHealth(result.getNewHP(), callable);
+			};
 			switch ( result.getStatus() ) {
 				case SUPER_EFFECTIVE:
-					System.out.println("It's super effective!");
+					speak("It's super effective!", myCallable);
 					break;
 				case MISS:
-					System.out.println("Missed!");
+					speak("Missed!", myCallable);
 					break;
 				case NOT_VERY_EFFECTIVE:
-					System.out.println("It's not very effective...");
+					speak("It's not very effective...", myCallable);
 					break;
 				case NOT_EFFECTIVE:
-					System.out.println("It's not effective at all!");
+					speak("It's not effective at all!", myCallable);
+					break;
+				default:
+					myCallable.call();
+					break;
 			}
-			opponentCurrent.setHp(result.getNewHP());
-			status_opponent.setHealth(result.getNewHP(), callable);
 		} else {
 			playerCurrent.setHp(result.getNewHP());
 			status_player.setHealth(result.getNewHP(), callable);

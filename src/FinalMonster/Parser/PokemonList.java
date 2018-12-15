@@ -26,7 +26,7 @@ public class PokemonList {
 	public static Pokemon[] Easy() {
 		if ( Easy == null ) {
 			Easy = new Pokemon[EASY_LEN];
-			System.arraycopy(pokemons, LEGEND_START, Easy, 0, EASY_LEN);
+			System.arraycopy(pokemons, EASY_START, Easy, 0, EASY_LEN);
 		}
 		return Easy;
 	}
