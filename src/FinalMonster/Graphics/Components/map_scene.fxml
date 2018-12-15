@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<fx:root fx:id="root" prefHeight="600.0" prefWidth="750.0" type="StackPane" xmlns="http://javafx.com/javafx/8.0.172-ea"
+         xmlns:fx="http://javafx.com/fxml/1">
+  <Pane fx:id="chars"/>
+  <ImageView fx:id="player_img"/>
+  <StackPane>
+    <ListView fx:id="pokemonChooseList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" prefWidth="440"/>
+  </StackPane>
+</fx:root>
