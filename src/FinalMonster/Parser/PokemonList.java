@@ -1,6 +1,8 @@
 
 package FinalMonster.Parser;
 
+import java.util.Random;
+
 public class PokemonList {
 
 	private static final int EASY_START = 0, EASY_LEN = 24 - EASY_START + 1,
@@ -51,6 +53,22 @@ public class PokemonList {
 			System.arraycopy(pokemons, LEGEND_START, Legend, 0, LEGEND_LEN);
 		}
 		return Legend;
+	}
+
+	public static Pokemon getPokemon(String name) {
+
+		Pokemon[] p = pokemons;
+		Pokemon chosen = null;
+		Random r = new Random();
+		if ( name.equalsIgnoreCase("random") ) {
+			return p[r.nextInt(100)];
+		}
+		for ( int i = 0; i < p.length; i++ ) {
+			if ( p[i].getName().equalsIgnoreCase(name) ) {
+				chosen = p[i];
+			}
+		}
+		return chosen;
 	}
 
 }

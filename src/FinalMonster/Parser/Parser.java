@@ -3,7 +3,6 @@ package FinalMonster.Parser;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,19 +51,4 @@ public class Parser {
 		}
 
 	}
-        public Pokemon getPokemon(String name){
-        
-        Pokemon[] p = scan();
-        Pokemon chosen = null;
-        Random r = new Random();
-        if(name.equalsIgnoreCase("random")){
-        return p[r.nextInt(100)];
-        }
-        for(int i=0; i < p.length; i++){
-        if(p[i].getName().equalsIgnoreCase(name)){
-            chosen = p[i];
-        }
-        }
-        return chosen;
-        }
 }
