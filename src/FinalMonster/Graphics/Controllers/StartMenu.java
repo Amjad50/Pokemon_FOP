@@ -1,6 +1,7 @@
 package FinalMonster.Graphics.Controllers;
 
 import FinalMonster.Graphics.Components.BattleScene;
+import FinalMonster.Graphics.Components.GotoBattleScene;
 import FinalMonster.Parser.Pokemon;
 import FinalMonster.Parser.PokemonList;
 import FinalMonster.Player;
@@ -22,7 +23,7 @@ public class StartMenu {
 		Player p2 = Player.bots[0];
 		p2.setPokemons(PokemonList.Hard());
 
-		root.getScene().setRoot(new BattleScene(p1, RandomChoice.randomPokemons(p1.getPokemons().toArray(new Pokemon[0]), 3),
+		root.getScene().setRoot(new GotoBattleScene(p1, RandomChoice.randomPokemons(p1.getPokemons().toArray(new Pokemon[0]), 3),
 				p2, RandomChoice.randomPokemons(p2.getPokemons().toArray(new Pokemon[0]), 3), false));
 	}
 
