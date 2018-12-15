@@ -30,7 +30,7 @@ public class GotoBattleScene extends Pane {
 	private ImageView player;
 	private ImageView opponent;
 
-	private GotoBattleScene(Player playerPlayer, ArrayList<Pokemon> playerpokemons, Player opponentPlayer, ArrayList<Pokemon> opponentpokemons, boolean isWild) throws IOException {
+	public GotoBattleScene(Player playerPlayer, ArrayList<Pokemon> playerpokemons, Player opponentPlayer, ArrayList<Pokemon> opponentpokemons, boolean isWild) throws IOException {
 		setWidth(Constrains.ROOT_WIDTH);
 		setHeight(Constrains.ROOT_HEIGHT);
 

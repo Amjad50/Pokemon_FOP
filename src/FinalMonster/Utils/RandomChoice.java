@@ -23,4 +23,8 @@ public class RandomChoice {
 		}
 		return result;
 	}
+
+	public static ArrayList<Pokemon> randomPokemons(List<Pokemon> src, int length) {
+		return new ArrayList<>(Arrays.asList(randomPokemons(src.toArray(new Pokemon[0]), length)));
+	}
 }

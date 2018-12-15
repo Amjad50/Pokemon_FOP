@@ -23,8 +23,8 @@ public class StartMenu {
 		Player p2 = Player.bots[0];
 		p2.setPokemons(PokemonList.Hard());
 
-		root.getScene().setRoot(new GotoBattleScene(p1, RandomChoice.randomPokemons(p1.getPokemons().toArray(new Pokemon[0]), 3),
-				p2, RandomChoice.randomPokemons(p2.getPokemons().toArray(new Pokemon[0]), 3), false));
+		root.getScene().setRoot(new GotoBattleScene(p1, RandomChoice.randomPokemons(p1.getPokemons(), 3),
+				p2, RandomChoice.randomPokemons(p2.getPokemons(), 3), false));
 	}
 
 	@FXML
