@@ -4,12 +4,16 @@ import FinalMonster.Graphics.Constrains;
 import FinalMonster.Graphics.Storage.ImageDB;
 import FinalMonster.Parser.Pokemon;
 import FinalMonster.Parser.PokemonList;
+import FinalMonster.Player;
+import FinalMonster.Utils.RandomChoice;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
@@ -29,6 +33,10 @@ public class SelectionScene extends BorderPane {
 	private Button play;
 	@FXML
 	private GridPane grid;
+	@FXML
+	private TextField player_name;
+	@FXML
+	private Label name_warning;
 
 	public ArrayList<Pokemon> playerPokemons = new ArrayList<>();
 	public ArrayList<Pokemon> opponentPokemons = new ArrayList<>();
@@ -97,7 +105,6 @@ public class SelectionScene extends BorderPane {
 		} else {
 			playerPokemons.add(PokemonList.getPokemon(poke.getId()));
 			System.out.println(poke.getId());
-			opponentPokemons.add(PokemonList.getPokemon("random"));
 		}
 		System.out.println(playerPokemons.size());
 	}
@@ -106,7 +113,15 @@ public class SelectionScene extends BorderPane {
 	public void play(ActionEvent e) {
 		System.out.println(Arrays.toString(playerPokemons.toArray()));
 		try {
-			root.getScene().setRoot(new BattleScene("player", playerPokemons, "opponent", opponentPokemons));
+			if ( player_name.getText().isEmpty() ) {
+				name_warning.setVisible(true);
+				return;
+			}
+			Player player = new Player(player_name.getText(), playerPokemons);
+			opponentPokemons = RandomChoice.randomPokemons(Arrays.asList(PokemonList.Normal()), 3);
+			Player opponent = Player.bots[2];
+			opponent.setPokemons(opponentPokemons);
+			root.getScene().setRoot(new BattleScene(player, RandomChoice.randomPokemons(playerPokemons, 3), opponent, opponentPokemons, false));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

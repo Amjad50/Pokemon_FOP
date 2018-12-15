@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
-<fx:root fx:id="root" prefHeight="400.0" prefWidth="600.0" type="BorderPane" xmlns="http://javafx.com/javafx/8"
+<fx:root fx:id="root" prefHeight="400.0" prefWidth="600.0" type="BorderPane" xmlns="http://javafx.com/javafx/8.0.172-ea"
          xmlns:fx="http://javafx.com/fxml/1">
 
   <bottom>
-    <Button fx:id="play" mnemonicParsing="false" text="PLAY"/>
+    <HBox>
+      <Button fx:id="play" mnemonicParsing="false" text="PLAY"/>
+      <TextField fx:id="player_name" promptText="name"/>
+      <Label fx:id="name_warning" visible="false" text="please fill a name" textFill="#ff0000"/>
+    </HBox>
   </bottom>
   <center>
 
