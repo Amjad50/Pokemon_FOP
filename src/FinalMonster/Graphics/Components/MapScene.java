@@ -7,21 +7,17 @@ import FinalMonster.Parser.PokemonList;
 import FinalMonster.Player;
 import FinalMonster.Utils.RandomChoice;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MapScene extends StackPane {
@@ -42,11 +38,23 @@ public class MapScene extends StackPane {
 	private BorderPane selection;
 	@FXML
 	private ListView<PokemonMapSelect> pokemonChooseList;
+	@FXML
+	private BorderPane bottom_bar;
+	@FXML
+	private ImageView opponent_fight_img;
+	@FXML
+	private Label opponent_fight_name;
+	@FXML
+	private Button fight_btn;
+	@FXML
+	private Button toBattle;
 
 	private Player player;
+	private Set<Integer> selected;
 	private ArrayList<Player> bots;
 	private ArrayList<Player> wildPokemons;
 	private SavedMapState state;
+	private Player toFight;
 
 	private MapScene(Player player) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("map_scene.fxml"));
@@ -61,6 +69,34 @@ public class MapScene extends StackPane {
 		pokemonChooseList.setItems(FXCollections.observableArrayList(
 				player.getPokemons().stream().map(PokemonMapSelect::new).collect(Collectors.toList())
 		));
+		pokemonChooseList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+		selected = new HashSet<>();
+
+		pokemonChooseList.setOnMouseClicked(event -> {
+			List<Integer> comming_selection = pokemonChooseList.getSelectionModel().getSelectedIndices();
+
+			boolean changed = selected.addAll(comming_selection);
+
+			if ( !changed ) {
+				selected.removeAll(comming_selection);
+			}
+
+			int[] finalSelection = new int[selected.size()];
+			Integer[] tmpArr = selected.toArray(new Integer[0]);
+			for ( int i = 0; i < finalSelection.length; i++ ) {
+				finalSelection[i] = tmpArr[i];
+			}
+			pokemonChooseList.getSelectionModel().clearSelection();
+			if ( finalSelection.length > 0 )
+				pokemonChooseList.getSelectionModel().selectIndices(finalSelection[0], finalSelection);
+
+			if ( finalSelection.length == 3 ) {
+				toBattle.setDisable(false);
+			} else {
+				toBattle.setDisable(true);
+			}
+		});
 
 		chars.setBackground(new Background(new BackgroundImage(
 				new Image(ImageDB.BG[3]),
@@ -69,6 +105,11 @@ public class MapScene extends StackPane {
 				BackgroundPosition.DEFAULT,
 				new BackgroundSize(Constrains.ROOT_WIDTH, Constrains.ROOT_HEIGHT - 100, false, false, false, false)
 		)));
+
+		fight_btn.setOnAction(this::fight);
+		toBattle.setOnAction(this::toBattle);
+
+		bottom_bar.setVisible(true);
 	}
 
 	public MapScene(Player player, SavedMapState state) throws IOException {
@@ -126,6 +167,14 @@ public class MapScene extends StackPane {
 		}
 
 		return RandomChoice.random(pokemonsCanWild, length);
+	}
+
+	private void fight(ActionEvent actionEvent) {
+		showSelection();
+	}
+
+	private void toBattle(ActionEvent actionEvent) {
+		System.out.println("starting battle");
 	}
 
 	private void showSelection() {
