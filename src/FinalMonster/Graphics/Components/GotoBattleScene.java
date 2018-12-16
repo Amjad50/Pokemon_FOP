@@ -30,7 +30,7 @@ public class GotoBattleScene extends Pane {
 	private ImageView player;
 	private ImageView opponent;
 
-	public GotoBattleScene(Player playerPlayer, ArrayList<Pokemon> playerpokemons, Player opponentPlayer, ArrayList<Pokemon> opponentpokemons, boolean isWild) throws IOException {
+	public GotoBattleScene(Player playerPlayer, ArrayList<Pokemon> playerpokemons, Player opponentPlayer, ArrayList<Pokemon> opponentpokemons, boolean isWild, MapScene.SavedMapState state) throws IOException {
 		setWidth(Constrains.ROOT_WIDTH);
 		setHeight(Constrains.ROOT_HEIGHT);
 
@@ -74,7 +74,7 @@ public class GotoBattleScene extends Pane {
 						} else {
 							Platform.runLater(() -> {
 								try {
-									this.getScene().setRoot(new BattleScene(playerPlayer, playerpokemons, opponentPlayer, opponentpokemons, isWild));
+									this.getScene().setRoot(new BattleScene(playerPlayer, playerpokemons, opponentPlayer, opponentpokemons, isWild, state));
 								} catch (IOException e) {
 									e.printStackTrace();
 								}
@@ -91,7 +91,7 @@ public class GotoBattleScene extends Pane {
 
 	}
 
-	public GotoBattleScene(Player playerPlayer, Pokemon[] playerpokemons, Player opponentPlayer, Pokemon[] opponentpokemons, boolean isWild) throws IOException {
-		this(playerPlayer, new ArrayList<>(Arrays.asList(playerpokemons)), opponentPlayer, new ArrayList<>(Arrays.asList(opponentpokemons)), isWild);
+	public GotoBattleScene(Player playerPlayer, Pokemon[] playerpokemons, Player opponentPlayer, Pokemon[] opponentpokemons, boolean isWild, MapScene.SavedMapState state) throws IOException {
+		this(playerPlayer, new ArrayList<>(Arrays.asList(playerpokemons)), opponentPlayer, new ArrayList<>(Arrays.asList(opponentpokemons)), isWild, state);
 	}
 }

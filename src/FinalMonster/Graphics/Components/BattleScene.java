@@ -9,7 +9,6 @@ import FinalMonster.Player;
 import FinalMonster.Utils.BattleLogic;
 import FinalMonster.Utils.Callback;
 import FinalMonster.Utils.SwitchPokemon;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -84,16 +83,17 @@ public class BattleScene extends StackPane {
 
 	private Queue<AttackDefenceRequest> attackDefenceQueue;
 
+	private MapScene.SavedMapState savedMapState;
 
-	public BattleScene(Player playerPlayer, ArrayList<Pokemon> playerpokemons, Player opponentPlayer, ArrayList<Pokemon> opponentpokemons, boolean isWild) throws IOException {
+
+	public BattleScene(Player playerPlayer, ArrayList<Pokemon> playerpokemons, Player opponentPlayer, ArrayList<Pokemon> opponentpokemons, boolean isWild, MapScene.SavedMapState state) throws IOException {
 		this.playerPlayer = playerPlayer;
 		this.playerPokemons = (ArrayList<Pokemon>) playerpokemons.stream().map(Pokemon::clone).collect(toList());
 		this.opponentPlayer = opponentPlayer;
 		this.opponentPokemons = (ArrayList<Pokemon>) opponentpokemons.stream().map(Pokemon::clone).collect(toList());
 		if ( isWild )
 			toWinPokemons = (ArrayList<Pokemon>) opponentpokemons.stream().map(Pokemon::clone).collect(toList());
-		System.out.println(playerPokemons);
-		System.out.println(opponentPokemons);
+		this.savedMapState = state;
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("battle_scene.fxml"));
 		loader.setRoot(this);
@@ -112,8 +112,8 @@ public class BattleScene extends StackPane {
 	}
 
 
-	public BattleScene(Player playerPlayer, Pokemon[] playerpokemons, Player opponentPlayer, Pokemon[] opponentpokemons, boolean isWild) throws IOException {
-		this(playerPlayer, new ArrayList<>(Arrays.asList(playerpokemons)), opponentPlayer, new ArrayList<>(Arrays.asList(opponentpokemons)), isWild);
+	public BattleScene(Player playerPlayer, Pokemon[] playerpokemons, Player opponentPlayer, Pokemon[] opponentpokemons, boolean isWild, MapScene.SavedMapState state) throws IOException {
+		this(playerPlayer, new ArrayList<>(Arrays.asList(playerpokemons)), opponentPlayer, new ArrayList<>(Arrays.asList(opponentpokemons)), isWild, state);
 	}
 
 	@FXML
@@ -278,23 +278,19 @@ public class BattleScene extends StackPane {
 			String s;
 			if ( toWinPokemons != null ) {
 				s = String.format("and a set of %d pokemons", toWinPokemons.size());
+				playerPlayer.getPokemons().addAll(toWinPokemons);
 			} else {
 				s = "";
 			}
 			speak(String.format("%s defated %s", playerPlayer.getName(), opponentPlayer.getName()), () -> {
 				speak(String.format("%s got %d xp for winning %s", playerPlayer.getName(), EXP_ON_WIN, s), () -> {
-					if ( !s.isEmpty() ) {
-						playerPlayer.getPokemons().addAll(toWinPokemons);
-					}
 					playerPlayer.addExp(EXP_ON_WIN);
-					exitBattle(false);
+					exitBattle();
 				});
 			});
 		} else {
 			speak(String.format("%s defated %s", opponentPlayer.getName(), playerPlayer.getName()), () -> {
-				speak(String.format("%s lost and got nothing", playerPlayer.getName()), () -> {
-					exitBattle(false);
-				});
+				speak(String.format("%s lost and got nothing", playerPlayer.getName()), this::exitBattle);
 			});
 		}
 	}
@@ -432,11 +428,15 @@ public class BattleScene extends StackPane {
 
 	private void run() {
 		//todo: implement this after map(exit from this scene)
-		speak(String.format("%s is trying to escape", playerPlayer.getName()), () -> exitBattle(true));
+		speak(String.format("%s is trying to escape", playerPlayer.getName()), () -> exitBattle());
 	}
 
-	private void exitBattle(boolean keep) {
-		Platform.exit();
+	private void exitBattle() {
+		try {
+			root.getScene().setRoot(new MapScene(playerPlayer, savedMapState, playerPlayer.getPokemonsForMe()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void fight() {

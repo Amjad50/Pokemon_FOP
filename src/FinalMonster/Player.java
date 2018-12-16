@@ -1,6 +1,7 @@
 package FinalMonster;
 
 import FinalMonster.Parser.Pokemon;
+import FinalMonster.Parser.PokemonList;
 import javafx.scene.image.Image;
 
 import java.net.URL;
@@ -88,9 +89,20 @@ public class Player {
 		} else {
 			int tmp = exp - toNextLevel;
 			levelUp();
-			toNextLevel += tmp;
+			addExp(tmp);
 			return true;
 		}
+	}
+
+	public Pokemon[] getPokemonsForMe() {
+		if ( level < 2 )
+			return PokemonList.Easy();
+		else if ( level < 3 )
+			return PokemonList.Normal();
+		else if ( level < 5 )
+			return PokemonList.Hard();
+		else
+			return PokemonList.Legend();
 	}
 
 	private String imagePath(String suffix) {

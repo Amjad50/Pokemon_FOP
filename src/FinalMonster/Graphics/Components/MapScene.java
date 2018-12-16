@@ -77,6 +77,7 @@ public class MapScene extends StackPane {
 		loader.load();
 
 		this.player = player;
+		player.addExp(90);
 		setUpPlayer();
 
 		pokemonChooseList.setItems(FXCollections.observableArrayList(
@@ -164,16 +165,20 @@ public class MapScene extends StackPane {
 	public MapScene(Player player, SavedMapState state, Pokemon[] opponentToChoose) throws IOException {
 		this(player);
 
+		bots = RandomChoice.random(Arrays.asList(Player.bots), 2);
+		wildPokemons = getWildPokemonsForPlayer(2);
+		for ( Player bot : bots ) {
+			bot.setPokemons(RandomChoice.random(Arrays.asList(opponentToChoose), 3));
+		}
 		if ( state == null ) {
 			this.state = new SavedMapState();
-			bots = RandomChoice.random(Arrays.asList(Player.bots), 2);
-			for ( Player bot : bots ) {
-				bot.setPokemons(RandomChoice.random(Arrays.asList(opponentToChoose), 3));
-			}
-			wildPokemons = getWildPokemonsForPlayer(2);
-			putOpponents();
-			putPlayer();
+			this.state.setPlayerLocation(750 / 2, 500 / 2);
+		} else {
+			this.state = new SavedMapState();
+			this.state.playerLocation = state.getPlayerLocation();
 		}
+		putOpponents();
+		putPlayer();
 	}
 
 	private void startGameLoop() {
@@ -231,7 +236,6 @@ public class MapScene extends StackPane {
 
 
 	private void putPlayer() {
-		state.setPlayerLocation(750 / 2, 500 / 2);
 		player_char_img.setImage(player.getMapImg());
 		player_char_img.setLayoutX(state.getPlayerLocation().getX() - player.getMapImg().getWidth() / 2);
 		player_char_img.setLayoutY(state.getPlayerLocation().getY() + player.getMapImg().getHeight() / 2);
@@ -285,7 +289,7 @@ public class MapScene extends StackPane {
 			choosen.add(player.getPokemons().get(i));
 		}
 		try {
-			this.getScene().setRoot(new GotoBattleScene(player, choosen, toFight, toFight.getPokemons(), toFightIsWild));
+			this.getScene().setRoot(new GotoBattleScene(player, choosen, toFight, toFight.getPokemons(), toFightIsWild, state));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -320,7 +324,7 @@ public class MapScene extends StackPane {
 	}
 
 	private void setLevel_progress() {
-		int percentage = 1 - player.nextLevelExp() / player.getToNextLevel();
+		double percentage = 1 - (double) player.getToNextLevel() / player.nextLevelExp();
 		this.level_progress.setProgress(percentage);
 	}
 
