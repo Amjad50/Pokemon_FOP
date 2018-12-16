@@ -77,7 +77,6 @@ public class MapScene extends StackPane {
 		loader.load();
 
 		this.player = player;
-		player.addExp(90);
 		setUpPlayer();
 
 		pokemonChooseList.setItems(FXCollections.observableArrayList(
