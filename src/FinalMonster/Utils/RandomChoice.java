@@ -1,30 +1,29 @@
 package FinalMonster.Utils;
 
-import FinalMonster.Parser.Pokemon;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class RandomChoice {
 
-	public static Pokemon[] randomPokemons(Pokemon[] src, int length) {
-		assert length <= src.length;
+	public static <T> ArrayList<T> random(List<T> src, int length) {
+		assert length <= src.size();
 		Random r = new Random();
-		List<Integer> used = new ArrayList<>(length);
+		int[] indecis = new int[length];
+		ArrayList<T> result = new ArrayList<>(length);
 
-		Pokemon[] result = new Pokemon[length];
 		for ( int i = 0; i < length; i++ ) {
-			result[i] = src[r.nextInt(src.length)];
+			indecis[i] = r.nextInt(src.size());
 			for ( int j = 0; j < i; j++ ) {
-				if ( result[j].equals(result[i]) ) {
+				if ( indecis[j] == indecis[i] ) {
 					i--;
 					break;
 				}
 			}
 		}
+		for ( int i = 0; i < length; i++ ) {
+			result.add(src.get(indecis[i]));
+		}
 		return result;
-	}
-
-	public static ArrayList<Pokemon> randomPokemons(List<Pokemon> src, int length) {
-		return new ArrayList<>(Arrays.asList(randomPokemons(src.toArray(new Pokemon[0]), length)));
 	}
 }
