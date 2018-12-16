@@ -6,6 +6,9 @@ import FinalMonster.Parser.Pokemon;
 import FinalMonster.Parser.PokemonList;
 import FinalMonster.Player;
 import FinalMonster.Utils.RandomChoice;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.*;
@@ -22,6 +26,7 @@ import java.util.stream.Collectors;
 
 public class MapScene extends StackPane {
 
+	private static final int MOVEMENT_DISTANCE = 7;
 	@FXML
 	private ImageView player_img;
 	@FXML
@@ -55,6 +60,13 @@ public class MapScene extends StackPane {
 	private ArrayList<Player> wildPokemons;
 	private SavedMapState state;
 	private Player toFight;
+
+	private Timeline gameloop;
+	private boolean isRight;
+	private boolean isLeft;
+	private boolean isUp;
+	private boolean isDown;
+
 
 	private MapScene(Player player) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("map_scene.fxml"));
@@ -109,7 +121,43 @@ public class MapScene extends StackPane {
 		fight_btn.setOnAction(this::fight);
 		toBattle.setOnAction(this::toBattle);
 
-		bottom_bar.setVisible(true);
+		chars.setFocusTraversable(true);
+
+		chars.setOnKeyPressed(event -> {
+			switch ( event.getCode() ) {
+				case RIGHT:
+					isRight = true;
+					break;
+				case LEFT:
+					isLeft = true;
+					break;
+				case UP:
+					isUp = true;
+					break;
+				case DOWN:
+					isDown = true;
+					break;
+			}
+		});
+
+		chars.setOnKeyReleased(event -> {
+			switch ( event.getCode() ) {
+				case RIGHT:
+					isRight = false;
+					break;
+				case LEFT:
+					isLeft = false;
+					break;
+				case UP:
+					isUp = false;
+					break;
+				case DOWN:
+					isDown = false;
+					break;
+			}
+		});
+
+		startGameLoop();
 	}
 
 	public MapScene(Player player, SavedMapState state) throws IOException {
@@ -123,6 +171,37 @@ public class MapScene extends StackPane {
 			putPlayer();
 		}
 	}
+
+	private void startGameLoop() {
+		gameloop = new Timeline(
+				new KeyFrame(Duration.millis(33), this::loop)
+		);
+		gameloop.setCycleCount(Animation.INDEFINITE);
+		gameloop.play();
+	}
+
+	private void loop(ActionEvent actionEvent) {
+		int toMoveX = 0;
+		int toMoveY = 0;
+		double newX, newY;
+		if ( isRight )
+			toMoveX += MOVEMENT_DISTANCE;
+		if ( isLeft )
+			toMoveX -= MOVEMENT_DISTANCE;
+		if ( isUp )
+			toMoveY -= MOVEMENT_DISTANCE;
+		if ( isDown )
+			toMoveY += MOVEMENT_DISTANCE;
+
+		newX = player_char_img.getLayoutX() + toMoveX;
+		newY = player_char_img.getLayoutY() + toMoveY;
+
+		if ( newX > 0 && newX < Constrains.ROOT_WIDTH - player_char_img.getImage().getWidth() )
+			player_char_img.setLayoutX(newX);
+		if ( newY > 100 && newY < Constrains.ROOT_HEIGHT - player_char_img.getImage().getHeight() - 10 )
+			player_char_img.setLayoutY(newY);
+	}
+
 
 	private void putPlayer() {
 		state.setPlayerLocation(750 / 2, 500 / 2);

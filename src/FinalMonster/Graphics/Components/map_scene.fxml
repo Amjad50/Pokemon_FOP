@@ -27,12 +27,14 @@
       <Pane fx:id="chars"/>
     </center>
   </BorderPane>
-  <ImageView fx:id="player_char_img"/>
+  <Pane>
+    <ImageView fx:id="player_char_img"/>
+  </Pane>
   <BorderPane fx:id="bottom_bar" visible="false">
     <bottom>
       <HBox alignment="CENTER_LEFT" opacity="0.75" prefHeight="80" style="-fx-background-color: #000;">
         <ImageView fx:id="opponent_fight_img" fitHeight="70" preserveRatio="true"/>
-        <Label fx:id="opponent_fight_name" text="assddddddddddd" textFill="white">
+        <Label fx:id="opponent_fight_name" textFill="white">
           <HBox.margin>
             <Insets left="10.0"/>
           </HBox.margin>
