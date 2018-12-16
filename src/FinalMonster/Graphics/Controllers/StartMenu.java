@@ -1,6 +1,6 @@
 package FinalMonster.Graphics.Controllers;
 
-import FinalMonster.Graphics.Components.MapScene;
+import FinalMonster.Graphics.Components.SelectionScene;
 import FinalMonster.Parser.PokemonList;
 import FinalMonster.Player;
 import javafx.application.Platform;
@@ -17,7 +17,7 @@ public class StartMenu {
 	@FXML
 	private void newGame(ActionEvent actionEvent) throws IOException {
 		Player p = new Player("player", PokemonList.Normal());
-		root.getScene().setRoot(new MapScene(p, null, p.getPokemonsForMe()));
+		root.getScene().setRoot(new SelectionScene());
 	}
 
 	@FXML

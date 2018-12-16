@@ -121,7 +121,7 @@ public class SelectionScene extends BorderPane {
 			opponentPokemons = RandomChoice.random(Arrays.asList(PokemonList.Normal()), 3);
 			Player opponent = Player.bots[2];
 			opponent.setPokemons(opponentPokemons);
-			root.getScene().setRoot(new GotoBattleScene(player, RandomChoice.random(playerPokemons, 3), opponent, opponentPokemons, false, null));
+			root.getScene().setRoot(new MapScene(player, null, player.getPokemonsForMe()));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
