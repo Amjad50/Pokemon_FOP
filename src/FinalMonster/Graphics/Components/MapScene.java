@@ -99,7 +99,7 @@ public class MapScene extends StackPane {
 		});
 
 		chars.setBackground(new Background(new BackgroundImage(
-				new Image(ImageDB.BG[3]),
+				new Image(ImageDB.BG[4]),
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
