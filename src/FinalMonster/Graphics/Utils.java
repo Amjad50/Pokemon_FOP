@@ -39,7 +39,7 @@ public class Utils {
 		return timeline;
 	}
 
-	public static void attackEffect(ImageView defending, ImageView attacking, BattleScene.Who who, Callback callable) {
+	public static void attackEffect(ImageView defending, ImageView attacking, BattleScene.Who who, Callback callable, boolean miss) {
 		Path path = new Path();
 		path.getElements().add(new MoveTo(attacking.getImage().getWidth() / 2, attacking.getImage().getHeight() / 2));
 		if ( who == BattleScene.Who.PLAYER )
@@ -54,18 +54,20 @@ public class Utils {
 		pathTransition.setNode(attacking);
 		pathTransition.setOrientation(PathTransition.OrientationType.NONE);
 		pathTransition.setOnFinished(event -> {
-			Music.getPlayers().get(Music.Place.ATTACK).stop();
-			Music.getPlayers().get(Music.Place.ATTACK).play();
-			Timeline timeline = new Timeline();
-			timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event2 -> {
-				defending.setOpacity(0);
-			}));
-			timeline.getKeyFrames().add(new KeyFrame(Duration.millis(200), event2 -> {
-				defending.setOpacity(1);
-			}));
-			timeline.setCycleCount(5);
-			timeline.setOnFinished(event3 -> callable.call());
-			timeline.play();
+			if ( !miss ) {
+				Music.getPlayers().get(Music.Place.ATTACK).stop();
+				Music.getPlayers().get(Music.Place.ATTACK).play();
+				Timeline timeline = new Timeline();
+				timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event2 -> {
+					defending.setOpacity(0);
+				}));
+				timeline.getKeyFrames().add(new KeyFrame(Duration.millis(200), event2 -> {
+					defending.setOpacity(1);
+				}));
+				timeline.setCycleCount(5);
+				timeline.setOnFinished(event3 -> callable.call());
+				timeline.play();
+			}
 		});
 		pathTransition.play();
 

@@ -488,9 +488,9 @@ public class BattleScene extends StackPane {
 			attimg = opponent_image;
 			defimg = player_image;
 		}
-		if ( result.getStatus() != BattleLogic.AttackStatus.MISS )
-			Utils.attackEffect(defimg, attimg, attacking, () -> {
-			});
+
+		Utils.attackEffect(defimg, attimg, attacking, () -> {
+		}, result.getStatus() == BattleLogic.AttackStatus.MISS);
 
 		if ( attacking == Who.PLAYER ) {
 			Callback myCallable = () -> {
