@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<fx:root fx:id="root" prefHeight="600.0" prefWidth="750.0" type="StackPane" xmlns="http://javafx.com/javafx/8.0.172-ea"
+         xmlns:fx="http://javafx.com/fxml/1">
+  <BorderPane>
+    <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="100">
+        <ImageView fx:id="player_img" fitHeight="90" preserveRatio="true"/>
+        <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+          <Label fx:id="name"/>
+          <HBox alignment="CENTER_LEFT">
+            <ProgressBar fx:id="level_progress" prefWidth="200.0" progress="0.31"/>
+            <Label text="  "/>
+            <Label fx:id="level" text="LVL: "/>
+          </HBox>
+          <HBox.margin>
+            <Insets left="10.0"/>
+          </HBox.margin>
+        </VBox>
+      </HBox>
+    </top>
+    <center>
+      <Pane fx:id="chars"/>
+    </center>
+  </BorderPane>
+  <Pane>
+    <ImageView fx:id="player_char_img"/>
+  </Pane>
+  <BorderPane fx:id="bottom_bar" visible="false">
+    <bottom>
+      <HBox alignment="CENTER_LEFT" opacity="0.75" prefHeight="80" style="-fx-background-color: #000;">
+        <ImageView fx:id="opponent_fight_img" fitHeight="70" preserveRatio="true"/>
+        <Label fx:id="opponent_fight_name" textFill="white">
+          <HBox.margin>
+            <Insets left="10.0"/>
+          </HBox.margin>
+        </Label>
+        <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+          <Button fx:id="fight_btn" text="FIGHT">
+            <HBox.margin>
+              <Insets/>
+            </HBox.margin>
+          </Button>
+        </HBox>
+      </HBox>
+    </bottom>
+  </BorderPane>
+
+  <BorderPane fx:id="selection" disable="true" managed="false" style="-fx-background-color: rgba(0,0,0,0.75);"
+              visible="false">
+    <center>
+      <ListView fx:id="pokemonChooseList" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                minWidth="-Infinity" prefWidth="440"/>
+    </center>
+    <bottom>
+      <HBox alignment="CENTER" prefHeight="80" spacing="20">
+        <Button fx:id="toBattle" text="START BATTLE!" disable="true"/>
+        <Button text="BACK" onAction="#hideSelection"/>
+      </HBox>
+    </bottom>
+  </BorderPane>
+</fx:root>

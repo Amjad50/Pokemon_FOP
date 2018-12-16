@@ -1,6 +1,8 @@
 package FinalMonster;
 
 import FinalMonster.Graphics.PokemonApplication;
+import FinalMonster.Parser.Parser;
+import java.util.Arrays;
 
 public class testMain {
 	public static void main(String[] args) {

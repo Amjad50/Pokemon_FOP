@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<fx:root alignment="CENTER_LEFT" prefHeight="50" prefWidth="400" type="HBox" xmlns="http://javafx.com/javafx/8.0.172-ea"
+         xmlns:fx="http://javafx.com/fxml/1">
+  <ImageView fx:id="img" fitHeight="40" preserveRatio="true"/>
+  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+    <HBox alignment="CENTER_LEFT">
+      <Label fx:id="name"/>
+      <Label fx:id="type"/>
+    </HBox>
+    <HBox alignment="CENTER_LEFT">
+      <Label fx:id="hp" text="HP: "/>
+      <Label text="  "/>
+      <Label fx:id="attack" text="Att: "/>
+      <Label text="  "/>
+      <Label fx:id="defence" text="Def: "/>
+      <Label text="  "/>
+      <Label fx:id="speed" text="Speed: "/>
+    </HBox>
+    <HBox.margin>
+      <Insets left="10.0"/>
+    </HBox.margin>
+  </VBox>
+</fx:root>

@@ -1,0 +1,58 @@
+#pikachu::before{
+    -fx-background-image: url(../resources/pikachu.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+}
+
+
+#start {
+    -fx-background-image: url(../resources/start.jpg);
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+}
+
+.btn {
+    -fx-background-color: white;
+    -fx-font-size: 18px;
+    -fx-border-radius: 10px;
+}
+
+.btn:hover {
+    -fx-background-color: yellow;
+    -fx-font-size: 20px;
+    -fx-transition: all;
+}
+
+.radio-button{
+    -fx-background-repeat: stretch;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}
+.radio-button:checked, .radio-button:hover, .radio-button:active{
+    
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: white;
+        
+}
+#charmander{
+    -fx-background-image: url(../resources/charmander.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}
+#mew{
+    -fx-background-image: url(../resources/mew.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+
+}
+#bulbasaur{
+    -fx-background-image: url(../resources/Bulbasaur.png);
+    -fx-background-repeat: stretch;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}

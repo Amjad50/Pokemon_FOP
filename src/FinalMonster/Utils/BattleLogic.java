@@ -33,8 +33,330 @@ public class BattleLogic {
 	}
 
 	private static double getMultiplierPower(String attType, String defType) {
-		//todo: real multiplyer calculation from https://pokemondb.net/type
-		return 1;
+		double mult = 1;
+		switch ( attType ) {
+			case "Normal":
+				switch ( defType ) {
+					case "Rock":
+					case "Steel":
+						mult = 0.5;
+						break;
+					case "Ghost":
+						mult = 0;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Fire":
+				switch ( defType ) {
+					case "Fire":
+					case "Water":
+					case "Rock":
+					case "Dragon":
+						mult = 0.5;
+						break;
+					case "Grass":
+					case "Ice":
+					case "Bug":
+					case "Steel":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+
+				}
+				break;
+			case "Water":
+				switch ( defType ) {
+					case "Water":
+					case "Grass":
+					case "Dragon":
+						mult = 0.5;
+						break;
+					case "Fire":
+					case "Ground":
+					case "Rock":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+
+				}
+				break;
+			case "Electric":
+				switch ( defType ) {
+					case "Electric":
+					case "Grass":
+					case "Dragon":
+						mult = 0.5;
+						break;
+					case "Water":
+					case "Flying":
+						mult = 2;
+						break;
+					case "Ground":
+						mult = 0;
+						break;
+					default:
+						mult = 1;
+						break;
+				}
+				break;
+			case "Grass":
+				switch ( defType ) {
+					case "Fire":
+					case "Grass":
+					case "Poison":
+					case "Flying":
+					case "Bug":
+					case "Steel":
+					case "Dragon":
+						mult = 0.5;
+						break;
+					case "Water":
+					case "Rock":
+					case "Ground":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+						break;
+				}
+				break;
+			case "Ice":
+				switch ( defType ) {
+					case "Fire":
+					case "Water":
+					case "Ice":
+					case "Steel":
+						mult = 0.5;
+						break;
+					case "Grass":
+					case "Dragon":
+					case "Ground":
+					case "Flying":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Fighting":
+				switch ( defType ) {
+					case "Flying":
+					case "Psychic":
+					case "Bug":
+					case "Fairy":
+					case "Posion":
+						mult = 0.5;
+						break;
+					case "Normal":
+					case "Ice":
+					case "Steel":
+					case "Rock":
+					case "Dark":
+						mult = 2;
+						break;
+					case "Ghost":
+						mult = 0;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Poison":
+				switch ( defType ) {
+					case "Poison":
+					case "Ground":
+					case "Rock":
+					case "Ghost":
+						mult = 0.5;
+						break;
+					case "Grass":
+					case "Fairy":
+						mult = 2;
+						break;
+					case "Steel":
+						mult = 0;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Ground":
+				switch ( defType ) {
+					case "Grass":
+					case "Bug":
+						mult = 0.5;
+						break;
+					case "Fire":
+					case "Steel":
+					case "Electric":
+					case "Poison":
+					case "Rock":
+						mult = 2;
+						break;
+					case "Flying":
+						mult = 0;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Flying":
+				switch ( defType ) {
+					case "Electric":
+					case "Steel":
+					case "Rock":
+						mult = 0.5;
+						break;
+					case "Grass":
+					case "Fighting":
+					case "Bug":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Psychic":
+				switch ( defType ) {
+					case "Psychic":
+					case "Steel":
+						mult = 0.5;
+						break;
+					case "Fighting":
+					case "Poison":
+						mult = 2;
+						break;
+					case "Dark":
+						mult = 0;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Bug":
+				switch ( defType ) {
+					case "Fire":
+					case "Fighting":
+					case "Flying":
+					case "Poison":
+					case "Ghost":
+					case "Steel":
+					case "Fairy":
+						mult = 0.5;
+						break;
+					case "Grass":
+					case "Dark":
+					case "Psychic":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Rock":
+				switch ( defType ) {
+					case "Fighting":
+					case "Ground":
+					case "Steel":
+						mult = 0.5;
+						break;
+					case "Fire":
+					case "Ice":
+					case "Bug":
+					case "Flying":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Ghost":
+				switch ( defType ) {
+					case "Dark":
+						mult = 0.5;
+						break;
+					case "Psychic":
+					case "Ghost":
+						mult = 2;
+						break;
+					case "Normal":
+						mult = 0;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Dragon":
+				switch ( defType ) {
+					case "Steel":
+						mult = 0.5;
+						break;
+					case "Dragon":
+						mult = 2;
+						break;
+					case "Fairy":
+						mult = 0;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Dark":
+				switch ( defType ) {
+					case "Fighting":
+					case "Dark":
+					case "Fairy":
+						mult = 0.5;
+						break;
+					case "Psychic":
+					case "Ghost":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Steel":
+				switch ( defType ) {
+					case "Fire":
+					case "Water":
+					case "Electric":
+					case "Steel":
+						mult = 0.5;
+						break;
+					case "Rock":
+					case "Ice":
+					case "Fairy":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+				}
+				break;
+			case "Fairy":
+				switch ( defType ) {
+					case "Fire":
+					case "Posion":
+					case "Steel":
+						mult = 0.5;
+						break;
+					case "Dragon":
+					case "Fighting":
+					case "Dark":
+						mult = 2;
+						break;
+					default:
+						mult = 1;
+				}
+
+
+		}
+		return mult;
+
 	}
 
 	public static class AttackResult {

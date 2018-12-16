@@ -62,26 +62,15 @@ public class BottomBar extends HBox {
 		return true;
 	}
 
-	public boolean setText(String string) {
-		return setText(string, () -> {
-		});
-	}
-
-	public void setTextForce(String string) {
-		if ( !setText(string) )
-			setText(string);
-	}
-
-	public void setTextForce(String string, Callback callable) {
-		if ( !setText(string, callable) )
-			setText(string, callable);
-	}
-
 	public void setMoves(MoveHandler[] moves_) {
 		assert moves_.length == moves.size();
 		for ( int i = 0; i < moves_.length; i++ ) {
 			MoveHandler cmove = moves_[i];
 			moves.get(i).setText(cmove.name);
+			if ( !cmove.getType().isEmpty() )
+				moves.get(i).setStyle(cmove.getTypeStyle());
+			else
+				moves.get(i).setStyle("");
 			moves.get(i).setOnAction(event -> cmove.callable.call());
 		}
 	}
@@ -121,10 +110,12 @@ public class BottomBar extends HBox {
 
 	public static class MoveHandler {
 		private String name;
+		private String type;
 		private Callback callable;
 
-		public MoveHandler(String name, Callback callable) {
+		public MoveHandler(String name, String type, Callback callable) {
 			this.name = name;
+			this.type = type;
 			this.callable = callable;
 		}
 
@@ -136,12 +127,84 @@ public class BottomBar extends HBox {
 			this.name = name;
 		}
 
+		private String getType() {
+			return type;
+		}
+
+		private void setType(String type) {
+			this.type = type;
+		}
+
 		public Callback getCallable() {
 			return callable;
 		}
 
 		public void setCallable(Callback callable) {
 			this.callable = callable;
+		}
+
+		private String getTypeStyle() {
+			String result = "-fx-background-color: ";
+			switch ( this.type ) {
+				case "Normal":
+					result += "#A8A77A";
+					break;
+				case "Fire":
+					result += "#EE8130";
+					break;
+				case "Water":
+					result += "#6390F0";
+					break;
+				case "Electric":
+					result += "#F7D02C";
+					break;
+				case "Grass":
+					result += "#7AC74C";
+					break;
+				case "Ice":
+					result += "#96D9D6";
+					break;
+				case "Fighting":
+					result += "#C22E28";
+					break;
+				case "Poison":
+					result += "#A33EA1";
+					break;
+				case "Ground":
+					result += "#E2BF65";
+					break;
+				case "Flying":
+					result += "#A98FF3";
+					break;
+				case "Psychic":
+					result += "#F95587";
+					break;
+				case "Bug":
+					result += "#A6B91A";
+					break;
+				case "Rock":
+					result += "#B6A136";
+					break;
+				case "Ghost":
+					result += "#735797";
+					break;
+				case "Dragon":
+					result += "#6F35FC";
+					break;
+				case "Dark":
+					result += "#705746";
+					break;
+				case "Steel":
+					result += "#B7B7CE";
+					break;
+				case "Fairy":
+					result += "#D685AD";
+					break;
+				default:
+					result += "";
+					break;
+			}
+			return result + ";";
 		}
 	}
 }
