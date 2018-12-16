@@ -2,6 +2,7 @@ package FinalMonster.Graphics.Components;
 
 import FinalMonster.Graphics.Constrains;
 import FinalMonster.Graphics.Storage.ImageDB;
+import FinalMonster.Graphics.Storage.Music;
 import FinalMonster.Graphics.Utils;
 import FinalMonster.Parser.Move;
 import FinalMonster.Parser.Pokemon;
@@ -433,6 +434,8 @@ public class BattleScene extends StackPane {
 
 	private void exitBattle() {
 		try {
+			if ( !Music.isMute )
+				Music.getPlayers().get(Music.Place.BATTLE).stop();
 			root.getScene().setRoot(new MapScene(playerPlayer, savedMapState, playerPlayer.getPokemonsForMe()));
 		} catch (IOException e) {
 			e.printStackTrace();

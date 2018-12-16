@@ -2,6 +2,7 @@ package FinalMonster.Graphics.Components;
 
 import FinalMonster.Graphics.Constrains;
 import FinalMonster.Graphics.Storage.ImageDB;
+import FinalMonster.Graphics.Storage.Music;
 import FinalMonster.Parser.Pokemon;
 import FinalMonster.Player;
 import javafx.animation.Animation;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -30,9 +32,16 @@ public class GotoBattleScene extends Pane {
 	private ImageView player;
 	private ImageView opponent;
 
+	private MediaPlayer mediaPlayer;
+
 	public GotoBattleScene(Player playerPlayer, ArrayList<Pokemon> playerpokemons, Player opponentPlayer, ArrayList<Pokemon> opponentpokemons, boolean isWild, MapScene.SavedMapState state) throws IOException {
 		setWidth(Constrains.ROOT_WIDTH);
 		setHeight(Constrains.ROOT_HEIGHT);
+
+		mediaPlayer = Music.getPlayers().get(Music.Place.BATTLE);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		if ( !Music.isMute )
+			mediaPlayer.play();
 
 		player = new ImageView(playerPlayer.getVSImg());
 		opponent = new ImageView(opponentPlayer.getVSImg());

@@ -11,7 +11,8 @@ public class Music {
 	public enum Place {
 		START("start.mp3"),
 		BATTLE("battle.mp3"),
-		MAP("map.mp3");
+		MAP("map.mp3"),
+		ATTACK("attack.wav");
 
 		private String filename;
 
@@ -22,6 +23,8 @@ public class Music {
 
 	}
 
+	public static boolean isMute = false;
+
 	private static Map<Place, MediaPlayer> players;
 
 	static {
@@ -31,7 +34,7 @@ public class Music {
 		}
 	}
 
-	private static Map<Place, MediaPlayer> getPlayers() {
+	public static Map<Place, MediaPlayer> getPlayers() {
 		return players;
 	}
 }

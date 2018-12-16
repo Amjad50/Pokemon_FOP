@@ -2,6 +2,7 @@
 package FinalMonster.Graphics;
 
 import FinalMonster.Graphics.Components.BattleScene;
+import FinalMonster.Graphics.Storage.Music;
 import FinalMonster.Utils.Callback;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -53,6 +54,8 @@ public class Utils {
 		pathTransition.setNode(attacking);
 		pathTransition.setOrientation(PathTransition.OrientationType.NONE);
 		pathTransition.setOnFinished(event -> {
+			Music.getPlayers().get(Music.Place.ATTACK).stop();
+			Music.getPlayers().get(Music.Place.ATTACK).play();
 			Timeline timeline = new Timeline();
 			timeline.getKeyFrames().add(new KeyFrame(Duration.millis(100), event2 -> {
 				defending.setOpacity(0);
@@ -65,6 +68,7 @@ public class Utils {
 			timeline.play();
 		});
 		pathTransition.play();
+
 	}
 
 

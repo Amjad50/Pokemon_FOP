@@ -2,6 +2,7 @@ package FinalMonster.Graphics.Components;
 
 import FinalMonster.Graphics.Constrains;
 import FinalMonster.Graphics.Storage.ImageDB;
+import FinalMonster.Graphics.Storage.Music;
 import FinalMonster.Parser.Pokemon;
 import FinalMonster.Parser.PokemonList;
 import FinalMonster.Player;
@@ -18,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -68,6 +70,8 @@ public class MapScene extends StackPane {
 	private boolean isUp;
 	private boolean isDown;
 
+	private MediaPlayer mediaPlayer;
+
 
 	private MapScene(Player player) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("map_scene.fxml"));
@@ -75,6 +79,11 @@ public class MapScene extends StackPane {
 		loader.setRoot(this);
 		loader.setController(this);
 		loader.load();
+
+		mediaPlayer = Music.getPlayers().get(Music.Place.MAP);
+		mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		if ( !Music.isMute )
+			mediaPlayer.play();
 
 		this.player = player;
 		setUpPlayer();
@@ -288,6 +297,8 @@ public class MapScene extends StackPane {
 			choosen.add(player.getPokemons().get(i));
 		}
 		try {
+			if ( !Music.isMute )
+				mediaPlayer.stop();
 			this.getScene().setRoot(new GotoBattleScene(player, choosen, toFight, toFight.getPokemons(), toFightIsWild, state));
 		} catch (IOException e) {
 			e.printStackTrace();

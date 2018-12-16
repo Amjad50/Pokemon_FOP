@@ -2,6 +2,7 @@ package FinalMonster.Graphics.Components;
 
 import FinalMonster.Graphics.Constrains;
 import FinalMonster.Graphics.Storage.ImageDB;
+import FinalMonster.Graphics.Storage.Music;
 import FinalMonster.Parser.Pokemon;
 import FinalMonster.Parser.PokemonList;
 import FinalMonster.Player;
@@ -121,6 +122,7 @@ public class SelectionScene extends BorderPane {
 			opponentPokemons = RandomChoice.random(Arrays.asList(PokemonList.Normal()), 3);
 			Player opponent = Player.bots[2];
 			opponent.setPokemons(opponentPokemons);
+			Music.getPlayers().get(Music.Place.START).stop();
 			root.getScene().setRoot(new MapScene(player, null, player.getPokemonsForMe()));
 		} catch (IOException e1) {
 			e1.printStackTrace();
