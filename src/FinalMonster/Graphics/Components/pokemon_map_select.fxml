@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <fx:root alignment="CENTER_LEFT" prefHeight="50" prefWidth="400" type="HBox" xmlns="http://javafx.com/javafx/8.0.172-ea"
          xmlns:fx="http://javafx.com/fxml/1">
-  <ImageView fx:id="img" fitHeight="40" fitWidth="50" preserveRatio="true"/>
+  <ImageView fx:id="img" fitHeight="40" preserveRatio="true"/>
   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
     <HBox alignment="CENTER_LEFT">
       <Label fx:id="name"/>

@@ -12,7 +12,6 @@ public class PokemonList {
 	private static String[] PokemonNames = {"Bulbasaur", "Charmander", "Squirtle", "Chikorita", "Cyndaquil", "Totodile", "Treecko", "Torchihc", "Mudkip", "Turtwig", "Chimchar", "Piplup", "Snivy", "Tepig", "Oshawott", "Ratata", "Pidgey", "Sentret", "Hoothoot", "Zigzagoon", "Poochyena", "Bidoof", "Starly", "Patrat", "Pidove", "Ivysaur", "Charmeleon", "Wartortle", "Bayleef", "Quilava", "Croconaw", "Grovyle", "Combusken", "Marshtomp", "Grotle", "Monferno", "Prinplup", "Raticate", "Pidgeotto", "Furret", "Noctowl", "Linoone", "Mightyena", "Bibarel", "Staravia", "Watchog", "Tranquill", "Venusaur", "Charizard", "Blastoise", "Meganium", "Typhlosion", "Feraligatr", "Sceptile", "Blaziken", "Torterra", "Infernape", "Empoleon", "Serperior", "Emboar", "Samurott", "Pidgeot", "Staraptor", "Unfezant", "Dragonite", "Metagross", "Salamence", "Garchomp", "Hydreigon", "Mewtwo", "Lugia", "Ho-oh", "Rayquaza", "Groudon", "Kyogre", "Deoxys", "Dialga", "Palkia", "Giratina", "Zekrom", "Reshiram", "Kyurem", "Genesect", "Arceus"};
 	private static Pokemon[] pokemons;
 
-	private static String[] Player = new String[3];
 	private static Pokemon[] Easy;
 	private static Pokemon[] Normal;
 	private static Pokemon[] Hard;
@@ -71,4 +70,7 @@ public class PokemonList {
 		return chosen;
 	}
 
+	public static Pokemon[] AllPokemons() {
+		return pokemons;
+	}
 }

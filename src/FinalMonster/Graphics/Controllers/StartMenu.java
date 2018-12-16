@@ -16,7 +16,7 @@ public class StartMenu {
 
 	@FXML
 	private void newGame(ActionEvent actionEvent) throws IOException {
-		root.getScene().setRoot(new MapScene(new Player("player", PokemonList.Normal())));
+		root.getScene().setRoot(new MapScene(new Player("player", PokemonList.Normal()), null));
 	}
 
 	@FXML

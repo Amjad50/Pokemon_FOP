@@ -3,14 +3,13 @@ package FinalMonster;
 import FinalMonster.Parser.Pokemon;
 import javafx.scene.image.Image;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Player {
 
 	public static Player[] bots = {new Player("Alder", true), new Player("Bianca", true), new Player("Hilbert", true)};
-
-	public static Player wildPokemon = new Player("Wild Pokemon", true);
 
 	private String name;
 	private ArrayList<Pokemon> pokemons;
@@ -27,6 +26,7 @@ public class Player {
 		this.name = name;
 		this.pokemons = pokemons;
 		this.isBot = false;
+		this.levelUp();
 	}
 
 	public Player(String name, Pokemon[] pokemons) {
@@ -36,6 +36,17 @@ public class Player {
 	private Player(String name, boolean isBot) {
 		this.name = name;
 		this.isBot = isBot;
+		this.pokemons = new ArrayList<>();
+	}
+
+	public static Player wild(Pokemon pokemon) {
+		if ( Player.class.getResource("/FinalMonster/resources/players/" + pokemon.getName() + "OD" + ".png") == null ) {
+			return null;
+		} else {
+			Player wild = new Player(pokemon.getName(), true);
+			wild.getPokemons().add(pokemon);
+			return wild;
+		}
 	}
 
 	public String getName() {
@@ -82,7 +93,6 @@ public class Player {
 		}
 	}
 
-
 	private String imagePath(String suffix) {
 		if ( isBot )
 			return "/FinalMonster/resources/players/" + name + suffix + ".png";
@@ -108,7 +118,11 @@ public class Player {
 	public Image getVSImg() {
 		if ( VSImg == null ) {
 			try {
-				VSImg = new Image(getClass().getResource(imagePath("VS")).toString());
+				URL imagetmp = getClass().getResource(imagePath("VS"));
+				if ( imagetmp == null )
+					VSImg = pokemons.get(0).getFrontImg();
+				else
+					VSImg = new Image(imagetmp.toString());
 			} catch (ExceptionInInitializerError e) {
 				e.printStackTrace();
 				return null;
