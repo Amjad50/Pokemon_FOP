@@ -60,6 +60,7 @@ public class MapScene extends StackPane {
 	private ArrayList<Player> wildPokemons;
 	private SavedMapState state;
 	private Player toFight;
+	private boolean toFightIsWild;
 
 	private Timeline gameloop;
 	private boolean isRight;
@@ -160,12 +161,15 @@ public class MapScene extends StackPane {
 		startGameLoop();
 	}
 
-	public MapScene(Player player, SavedMapState state) throws IOException {
+	public MapScene(Player player, SavedMapState state, Pokemon[] opponentToChoose) throws IOException {
 		this(player);
 
 		if ( state == null ) {
 			this.state = new SavedMapState();
 			bots = RandomChoice.random(Arrays.asList(Player.bots), 2);
+			for ( Player bot : bots ) {
+				bot.setPokemons(RandomChoice.random(Arrays.asList(opponentToChoose), 3));
+			}
 			wildPokemons = getWildPokemonsForPlayer(2);
 			putOpponents();
 			putPlayer();
@@ -200,6 +204,29 @@ public class MapScene extends StackPane {
 			player_char_img.setLayoutX(newX);
 		if ( newY > 100 && newY < Constrains.ROOT_HEIGHT - player_char_img.getImage().getHeight() - 10 )
 			player_char_img.setLayoutY(newY);
+		Point2D player = new Point2D(player_char_img.getLayoutX(), player_char_img.getLayoutY() - 100);
+
+		toFight = null;
+		for ( Player other : state.getPokemonLocations().keySet() ) {
+			if ( state.getPokemonLocations().get(other).distance(player) < 30 ) {
+				toFight = other;
+				toFightIsWild = wildPokemons.contains(other);
+				break;
+			}
+		}
+
+		displayOpponentFight();
+
+	}
+
+	private void displayOpponentFight() {
+		if ( toFight == null ) {
+			bottom_bar.setVisible(false);
+		} else {
+			opponent_fight_img.setImage(toFight.getVSImg());
+			opponent_fight_name.setText(toFight.getName());
+			bottom_bar.setVisible(true);
+		}
 	}
 
 
@@ -253,7 +280,15 @@ public class MapScene extends StackPane {
 	}
 
 	private void toBattle(ActionEvent actionEvent) {
-		System.out.println("starting battle");
+		ArrayList<Pokemon> choosen = new ArrayList<>(3);
+		for ( int i : selected ) {
+			choosen.add(player.getPokemons().get(i));
+		}
+		try {
+			this.getScene().setRoot(new GotoBattleScene(player, choosen, toFight, toFight.getPokemons(), toFightIsWild));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void showSelection() {
@@ -262,7 +297,10 @@ public class MapScene extends StackPane {
 		selection.setDisable(false);
 	}
 
+	@FXML
 	private void hideSelection() {
+		pokemonChooseList.getSelectionModel().clearSelection();
+		selected.clear();
 		selection.setVisible(false);
 		selection.setManaged(false);
 		selection.setDisable(true);

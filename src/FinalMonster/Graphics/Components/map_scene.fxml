@@ -57,8 +57,9 @@
                 minWidth="-Infinity" prefWidth="440"/>
     </center>
     <bottom>
-      <HBox alignment="CENTER" prefHeight="80">
+      <HBox alignment="CENTER" prefHeight="80" spacing="20">
         <Button fx:id="toBattle" text="START BATTLE!" disable="true"/>
+        <Button text="BACK" onAction="#hideSelection"/>
       </HBox>
     </bottom>
   </BorderPane>

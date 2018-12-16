@@ -91,7 +91,7 @@ public class BattleScene extends StackPane {
 		this.opponentPlayer = opponentPlayer;
 		this.opponentPokemons = (ArrayList<Pokemon>) opponentpokemons.stream().map(Pokemon::clone).collect(toList());
 		if ( isWild )
-			toWinPokemons = opponentPokemons;
+			toWinPokemons = (ArrayList<Pokemon>) opponentpokemons.stream().map(Pokemon::clone).collect(toList());
 		System.out.println(playerPokemons);
 		System.out.println(opponentPokemons);
 
@@ -277,7 +277,7 @@ public class BattleScene extends StackPane {
 		if ( who == Who.PLAYER ) {
 			String s;
 			if ( toWinPokemons != null ) {
-				s = String.format("and a set of %d pokemons, %s", toWinPokemons.size(), toWinPokemons.stream().map(Pokemon::getName));
+				s = String.format("and a set of %d pokemons", toWinPokemons.size());
 			} else {
 				s = "";
 			}
