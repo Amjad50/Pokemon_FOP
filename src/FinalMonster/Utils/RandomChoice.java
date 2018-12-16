@@ -12,7 +12,7 @@ public class RandomChoice {
 		Random r = new Random();
 		boolean reverse;
 		int lengthS;
-		if ( src.size() / 2 < length ) {
+		if ( src.size() / 2 + 1 < length ) {
 			reverse = true;
 			lengthS = src.size() - length;
 		} else {
