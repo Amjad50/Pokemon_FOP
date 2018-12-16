@@ -405,7 +405,7 @@ public class BattleScene extends StackPane {
 
 		for ( int i = 0; i < playerPokemons.size(); i++ ) {
 			Pokemon p = playerPokemons.get(i);
-			handlers[i] = new BottomBar.MoveHandler(p.getName(), () -> {
+			handlers[i] = new BottomBar.MoveHandler(p.getName(), "", () -> {
 				this.bottomBar.setMovesVisibile(false);
 				switchPokemon(Who.PLAYER, SwitchPokemon.SwitchMode.SET, p, result -> {
 					if ( result ) {
@@ -420,7 +420,7 @@ public class BattleScene extends StackPane {
 
 
 		for ( int i = playerPokemons.size(); i < 4; i++ ) {
-			handlers[i] = new BottomBar.MoveHandler("", () -> {
+			handlers[i] = new BottomBar.MoveHandler("", "", () -> {
 			});
 		}
 
@@ -449,7 +449,7 @@ public class BattleScene extends StackPane {
 
 		for ( int i = 0; i < 4; i++ ) {
 			final AttackDefence attackDefence = new AttackDefence(moves[i], attacking.getAttack(), defending);
-			handlers[i] = new BottomBar.MoveHandler(moves[i].getName(), () -> {
+			handlers[i] = new BottomBar.MoveHandler(moves[i].getName(), moves[i].getType(), () -> {
 				this.playerAttack(attackDefence, this::loop);
 				this.bottomBar.setMovesVisibile(false);
 			});
