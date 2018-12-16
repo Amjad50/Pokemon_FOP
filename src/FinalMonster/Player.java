@@ -62,7 +62,11 @@ public class Player {
 		return toNextLevel;
 	}
 
-	private void levelUp() {
+	public int nextLevelExp() {
+		return this.level * 30 + 10;
+	}
+
+	public void levelUp() {
 		this.toNextLevel = ++this.level * 30 + 10;
 	}
 
