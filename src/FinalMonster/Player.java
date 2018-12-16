@@ -15,7 +15,7 @@ public class Player {
 	private String name;
 	private ArrayList<Pokemon> pokemons;
 	private Image backImg;
-	private Image VSimg;
+	private Image VSImg;
 	private Image mapImg;
 
 	private int level;
@@ -62,7 +62,11 @@ public class Player {
 		return toNextLevel;
 	}
 
-	private void levelUp() {
+	public int nextLevelExp() {
+		return this.level * 30 + 10;
+	}
+
+	public void levelUp() {
 		this.toNextLevel = ++this.level * 30 + 10;
 	}
 
@@ -101,17 +105,17 @@ public class Player {
 		return backImg;
 	}
 
-	public Image getVSimg() {
-		if ( VSimg == null ) {
+	public Image getVSImg() {
+		if ( VSImg == null ) {
 			try {
-				VSimg = new Image(getClass().getResource(imagePath("VS")).toString());
+				VSImg = new Image(getClass().getResource(imagePath("VS")).toString());
 			} catch (ExceptionInInitializerError e) {
 				e.printStackTrace();
 				return null;
 			}
 		}
 
-		return VSimg;
+		return VSImg;
 	}
 
 	public Image getMapImg() {

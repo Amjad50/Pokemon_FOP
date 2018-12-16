@@ -34,8 +34,8 @@ public class GotoBattleScene extends Pane {
 		setWidth(Constrains.ROOT_WIDTH);
 		setHeight(Constrains.ROOT_HEIGHT);
 
-		player = new ImageView(playerPlayer.getVSimg());
-		opponent = new ImageView(opponentPlayer.getVSimg());
+		player = new ImageView(playerPlayer.getVSImg());
+		opponent = new ImageView(opponentPlayer.getVSImg());
 		Label VStext = new Label("VS");
 		VStext.setFont(Font.font(0));
 		VStext.setTextFill(Color.CHOCOLATE);
