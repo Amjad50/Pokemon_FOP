@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class MapScene extends StackPane {
@@ -45,6 +46,7 @@ public class MapScene extends StackPane {
 	private Player player;
 	private ArrayList<Player> bots;
 	private ArrayList<Player> wildPokemons;
+	private SavedMapState state;
 
 	private MapScene(Player player) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("map_scene.fxml"));
@@ -61,7 +63,7 @@ public class MapScene extends StackPane {
 		));
 
 		chars.setBackground(new Background(new BackgroundImage(
-				new Image(ImageDB.BG[2]),
+				new Image(ImageDB.BG[3]),
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT,
@@ -73,17 +75,47 @@ public class MapScene extends StackPane {
 		this(player);
 
 		if ( state == null ) {
+			this.state = new SavedMapState();
 			bots = RandomChoice.random(Arrays.asList(Player.bots), 2);
-//			putBotPlayers();
 			wildPokemons = getWildPokemonsForPlayer(2);
-			System.out.println(bots);
-			System.out.println(wildPokemons);
-//			putWildPokemons();
+			putOpponents();
+			putPlayer();
+		}
+	}
+
+	private void putPlayer() {
+		state.setPlayerLocation(750 / 2, 500 / 2);
+		player_char_img.setImage(player.getMapImg());
+		player_char_img.setLayoutX(state.getPlayerLocation().getX() - player.getMapImg().getWidth() / 2);
+		player_char_img.setLayoutY(state.getPlayerLocation().getY() + player.getMapImg().getHeight() / 2);
+	}
+
+	private void putOpponents() {
+		Random rand = new Random();
+		ArrayList<Player> all = new ArrayList<>();
+		all.addAll(bots);
+		all.addAll(wildPokemons);
+		for ( int i = 0; i < all.size(); i++ ) {
+			Point2D cpoint = new Point2D(rand.nextInt(650 - 50) + 50, rand.nextInt(400 - 50) + 50);
+			boolean broke = false;
+			for ( Point2D p : state.getPokemonLocations().values() ) {
+				if ( cpoint.distance(p) < 100 ) {
+					i--;
+					broke = true;
+					break;
+				}
+			}
+			if ( !broke ) {
+				state.getPokemonLocations().put(all.get(i), cpoint);
+				ImageView img = new ImageView(all.get(i).getMapImg());
+				img.setLayoutX(cpoint.getX());
+				img.setLayoutY(cpoint.getY());
+				chars.getChildren().add(img);
+			}
 		}
 	}
 
 	private ArrayList<Player> getWildPokemonsForPlayer(int length) {
-		ArrayList<Player> result = new ArrayList<>();
 		ArrayList<Player> pokemonsCanWild = new ArrayList<>();
 
 		for ( Pokemon pokemon : PokemonList.AllPokemons() ) {
@@ -135,14 +167,27 @@ public class MapScene extends StackPane {
 	}
 
 	public class SavedMapState {
-		private HashMap<Pokemon, Point2D> pokemonLocations = new HashMap<>();
+		private HashMap<Player, Point2D> pokemonLocations = new HashMap<>();
+		private Point2D playerLocation;
 
 		private SavedMapState() {
 
 		}
 
-		private HashMap<Pokemon, Point2D> getPokemonLocations() {
+		private HashMap<Player, Point2D> getPokemonLocations() {
 			return pokemonLocations;
+		}
+
+		private Point2D getPlayerLocation() {
+			return playerLocation;
+		}
+
+		private void setPlayerLocation(Point2D playerLocation) {
+			this.playerLocation = playerLocation;
+		}
+
+		private void setPlayerLocation(double x, double y) {
+			this.playerLocation = new Point2D(x, y);
 		}
 	}
 }
