@@ -95,11 +95,6 @@ public class SelectionScene extends BorderPane {
 
 	@FXML
 	public void addPokemons(ActionEvent e) {
-		if ( playerPokemons.size() > 1 && playerPokemons.size() < 3 ) {
-			play.setDisable(false);
-		} else {
-			play.setDisable(true);
-		}
 		RadioButton poke = (RadioButton) e.getSource();
 		if ( !poke.isSelected() ) {
 			System.out.println(playerPokemons.remove(PokemonList.getPokemon(poke.getId())));
@@ -108,6 +103,12 @@ public class SelectionScene extends BorderPane {
 			System.out.println(poke.getId());
 		}
 		System.out.println(playerPokemons.size());
+
+		if ( playerPokemons.size() == 3 ) {
+			play.setDisable(false);
+		} else {
+			play.setDisable(true);
+		}
 	}
 
 	@FXML
